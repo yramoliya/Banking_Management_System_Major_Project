@@ -1,0 +1,182 @@
+﻿
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap Registration Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <section class="h-100 d-flex align-items-center bg-light">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="card shadow-lg border-0 rounded-4">
+                        <div class="row g-0">
+                            <div class="col-lg-6 p-5">
+                                <h3 class="fw-bold text-primary mb-4">General Information</h3>
+
+                                <div class="mb-3">
+                                    <select class="form-select" id="title">
+                                        <option selected>Title</option>
+                                        <option>Mr.</option>
+                                        <option>Mrs.</option>
+                                        <option>Miss</option>
+                                    </select>
+                                </div>
+
+                                <span style="font-size:12px ; padding:5px ; color:red">Enter the name as per the Offical Document *</span><br />
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <input type="text" id="fname" class="form-control" placeholder="First name">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <input type="text" id="mname" class="form-control" placeholder="Middle name">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <input type="text" id="lname" class="form-control" placeholder="Last name">
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="dob" class="form-label">Date of Birth</label>
+                                    <input type="date" class="form-control" id="dob" name="dob" required>
+                                </div>
+
+
+                                <div class="mb-3">
+                                    <label for="gender" class="form-label">Gender</label><br />
+                                    <input id="male" type="radio" value="gender" checked/> Male
+                                    <input id="female" type="radio" value="gender"/> Female
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="father's name" class="form-label">Father’s/Mother’s/Guardian’s Name</label><br />
+                                    <input type="text" id="father name" class="form-control" placeholder="Father’s/Mother’s/Guardian’s Name" />
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="Nationality" class="form-label">Nationality</label><br />
+                                    <input type="text" id="Nationality" class="form-control" placeholder="Nationality" />
+                                </div>
+                            </div>
+                            <!--Here the another scation is satrt -->
+
+                            <div class="col-lg-6 bg-primary text-white p-5">
+                                <h3 class="fw-bold mb-4">Contact Details</h3>
+
+                                <div class="mb-3">
+                                    <textarea id="address" class="form-control" placeholder="Street + Nr"></textarea>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-5 mb-3">
+                                        <input type="text" id="zipcode" class="form-control" placeholder="Zip Code">
+                                    </div>
+
+                                <div class="col-md-7 mb-3">
+                                        <input type="text" id="area" class="form-control" placeholder="area">
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <input type="text" id="country" class="form-control" placeholder="Country">
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-5 mb-3">
+                                        <input type="text" id="phn_code" class="form-control" placeholder="Code +">
+                                    </div>
+                                    <div class="col-md-7 mb-3">
+                                        <input type="text" id="number" class="form-control" placeholder="Phone Number">
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <input type="email" id="email" class="form-control" placeholder="Your Email">
+                                </div>
+
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" id="terms">
+                                    <label class="form-check-label" for="terms">
+                                        I accept the <a href="#" class="text-white"><u>Terms and Conditions</u></a>.
+                                    </label>
+                                </div>
+
+                                <button class="btn btn-light btn-lg w-100">Register</button>
+                            </div>
+
+                            <!--Another Section -->
+                            <div class="col-lg-6 bg-primary text-white p-5">
+                                <h3 class="fw-bold mb-4">Identity Verification (KYC - Know Your Customer)</h3>
+
+                                <div class="mb-3">
+                                    <textarea id="adharcard" class="form-control" placeholder="Enter Adhar card Number"></textarea>
+                                </div>
+                                Identity Verification (KYC - Know Your Customer)
+                                Aadhaar Card Number (for Indian banks)
+                                Passport/Driving License/Voter ID (for identity verification)
+                                PAN Card (for tax purposes)
+                                Photograph (Passport Size)
+                                Signature Sample
+
+                                <div class="mb-3">
+                                    <textarea id="adharcard" class="form-control" placeholder="Enter Adhar card Number"></textarea>
+                                </div>
+
+                                is there any spicfy for the adhar card number enter validation number
+                                <div class="row">
+                                    <div class="col-md-5 mb-3">
+                                        <input type="text" id="zipcode" class="form-control" placeholder="Zip Code">
+                                    </div>
+
+                                    <div class="col-md-7 mb-3">
+                                        <input type="text" id="area" class="form-control" placeholder="area">
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <input type="text" id="country" class="form-control" placeholder="Country">
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-5 mb-3">
+                                        <input type="text" id="phn_code" class="form-control" placeholder="Code +">
+                                    </div>
+                                    <div class="col-md-7 mb-3">
+                                        <input type="text" id="number" class="form-control" placeholder="Phone Number">
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <input type="email" id="email" class="form-control" placeholder="Your Email">
+                                </div>
+
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" id="terms">
+                                    <label class="form-check-label" for="terms">
+                                        I accept the <a href="#" class="text-white"><u>Terms and Conditions</u></a>.
+                                    </label>
+                                </div>
+
+                                <button class="btn btn-light btn-lg w-100">Register</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
