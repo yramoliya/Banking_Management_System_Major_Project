@@ -2,7 +2,199 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<!-- Hero Section -->
+<section class="hero-section text-center text-white py-5">
+    <div class="container">
+        <h1 class="display-4">Welcome to SecureBank</h1>
+        <p class="lead">Your Trusted Financial Partner</p>
+        <a href="#" class="btn btn-light btn-lg">Get Started</a>
+    </div>
+</section>
+
+<!-- User Account Card -->
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card text-center shadow-lg bg-primary text-white">
+                <div class="card-body">
+                    <h3 class="card-title">Account Overview</h3>
+                    <hr class="bg-light" />
+                    <p><strong>Name:</strong> John Doe</p>
+                    <p><strong>Account Number:</strong> 1234-5678-9012</p>
+                    <p><strong>Balance:</strong> $5,250.00</p>
+                    <p><strong>Account Type:</strong> Savings</p>
+                    <a href="#" class="btn btn-outline-light">View Statement</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+<!-- Banking Services Section -->
+<div class="container mt-5">
+    <div class="text-center">
+        <h2 class="mb-4 text-dark">Our Banking Services</h2>
+        <p class="lead text-muted">Explore the best financial solutions tailored for you.</p>
+    </div>
+    <div class="row g-4">
+        <div class="col-md-3">
+            <div class="card service-card shadow">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Loan Services</h5>
+                    <p class="card-text">Get quick loans with low-interest rates.</p>
+                    <a href="@Url.Action("","")" class="btn btn-success">Apply Now</a> <!--here to add the link url.Action//(Acttion name , controller name )-->
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card service-card shadow">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Transaction History</h5>
+                    <p class="card-text">Monitor your transactions in real-time.</p>
+                    <a href="@Url.Action("Login","Bank")" class="btn btn-warning">View Transactions</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card service-card shadow">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Fund Transfer</h5>
+                    <p class="card-text">Secure and fast money transfers.</p>
+                    <a href="#" class="btn btn-primary">Transfer Now</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card service-card shadow">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Investment Plans</h5>
+                    <p class="card-text">Grow your wealth with expert plans.</p>
+                    <a href="#" class="btn btn-info">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Customer Testimonials -->
+<div class="container mt-5">
+    <div class="text-center">
+        <h2 class="mb-4 text-dark">What Our Customers Say</h2>
+    </div>
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card p-3 shadow-sm testimonial-card">
+                <div class="card-body">
+                    <p class="testimonial-text">"SecureBank has transformed my banking experience. Easy and fast!"</p>
+                    <h5 class="text-light">- Sarah Thompson</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card p-3 shadow-sm testimonial-card">
+                <div class="card-body">
+                    <p class="testimonial-text">"Fund transfers are instant, and customer support is excellent!"</p>
+                    <h5 class="text-light">- Michael Johnson</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card p-3 shadow-sm testimonial-card">
+                <div class="card-body">
+                    <p class="testimonial-text">"The loan application process was quick and stress-free. Highly recommend!"</p>
+                    <h5 class="text-light">- Emily Davis</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- FAQ Section -->
+<div class="container mt-5">
+    <div class="text-center">
+        <h2 class="text-dark">Frequently Asked Questions</h2>
+    </div>
+    <div class="accordion mt-3" id="faqAccordion">
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                    How can I apply for a loan?
+                </button>
+            </h2>
+            <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    You can apply for a loan through our online portal or visit a branch.
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item mt-3">
+            <h2 class="accordion-header">
+                <button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                    What is the minimum balance required?
+                </button>
+            </h2>
+            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    The minimum balance depends on your account type.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer-section text-white text-center py-4 mt-5">
+    <p>&copy; 2025 SecureBank | All Rights Reserved</p>
+    <p>Contact: support@securebank.com | Phone: 1-800-123-4567</p>
+</footer>
+
+<!-- Bootstrap 5 & Custom Styles -->
+<style>
+    /* Hero Section */
+    .hero-section {
+        background: linear-gradient(to right, #4facfe, #00f2fe);
+    }
+
+    /* Account Card */
+    .card.bg-primary {
+        border-radius: 10px;
+    }
+
+    /* Service Cards */
+    .service-card {
+        border-radius: 10px;
+        transition: 0.3s;
+    }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Test*/
+        .testimonial-card {
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: #fff;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            }
+
+        .testimonial-text {
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+
+        .text-light {
+            opacity: 0.8;
+        }
+
+    /* Footer */
+    .footer-section {
+        background: #343a40;
+    }
+</style>
