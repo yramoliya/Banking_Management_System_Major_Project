@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewData["Title"] = "Fund";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container mt-5">
+    <h2 class="text-center">Fund Transfer</h2>
+    <form>
+        <div class="mb-3">
+            <label for="ifscCode" class="form-label">Enter IFSC Code</label>
+            <input type="text" id="ifscCode" class="form-control" placeholder="Enter IFSC Code" oninput="fetchBankName()">
+        </div>
+        <div class="mb-3">
+            <label for="bankName" class="form-label">Bank Name</label>
+            <input type="text" id="bankName" class="form-control" placeholder="Bank Name" readonly>
+        </div>
+        <div class="mb-3">
+            <label for="accountType" class="form-label">Select Account Type</label>
+            <select id="accountType" class="form-select">
+                <option value="savings">Savings Account</option>
+                <option value="cc">CC Account</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="senderAccount" class="form-label">Sender Account Number</label>
+            <input type="text" id="senderAccount" class="form-control" placeholder="Enter your account number">
+        </div>
+        <div class="mb-3">
+            <label for="recipientAccount" class="form-label">Recipient Account Number</label>
+            <input type="text" id="recipientAccount" class="form-control" placeholder="Enter recipient's account number">
+        </div>
+        <div class="mb-3">
+            <label for="amount" class="form-label">Amount</label>
+            <input type="number" id="amount" class="form-control" placeholder="Enter amount">
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Transfer Now</button>
+    </form>
+</div>
+
+<script>
+    function fetchBankName() {
+        let ifscCode = document.getElementById("ifscCode").value;
+        let bankNameField = document.getElementById("bankName");
+
+        // Simulating bank name retrieval (replace with API call if needed)
+        if (ifscCode === "SBIN0001234") {
+            bankNameField.value = "State Bank of India";
+        } else if (ifscCode === "HDFC0005678") {
+            bankNameField.value = "HDFC Bank";
+        } else {
+            bankNameField.value = "";
+        }
+    }
+</script>
+
+

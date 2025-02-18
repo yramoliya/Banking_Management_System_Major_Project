@@ -1,0 +1,103 @@
+﻿@{
+    ViewData["Title"] = "Transactions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Transaction History</h2>
+
+    <!-- Search & Filter Section -->
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <input type="text" id="searchInput" class="form-control" placeholder="Search by Name, ID, or Amount...">
+        </div>
+        <div class="col-md-4">
+            <input type="date" id="dateFilter" class="form-control">
+        </div>
+        <div class="col-md-2">
+            <button class="btn btn-primary w-100" onclick="filterTransactions()">Search</button>
+        </div>
+    </div>
+
+    <!-- Transaction History Table -->
+    <div class="card shadow-lg">
+        <div class="card-body">
+            <table class="table table-hover" id="transactionTable">
+                <thead class="bg-primary text-white">
+                    <tr>
+                        <th>Date</th>
+                        <th>Transaction ID</th>
+                        <th>Debitor (Sender)</th>
+                        <th>Creditor (Receiver)</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Example Transactions -->
+                    <tr class="table-success">
+                        <td>2025-02-15</td>
+                        <td>#TXN123456</td>
+                        <td>John Doe</td>
+                        <td>Mike Smith</td>
+                        <td>$500.00</td>
+                        <td><span class="badge bg-success">Credit</span></td>
+                    </tr>
+                    <tr class="table-danger">
+                        <td>2025-02-14</td>
+                        <td>#TXN789012</td>
+                        <td>Emily Davis</td>
+                        <td>John Doe</td>
+                        <td>-$200.00</td>
+                        <td><span class="badge bg-danger">Debit</span></td>
+                    </tr>
+                    <tr class="table-success">
+                        <td>2025-02-12</td>
+                        <td>#TXN345678</td>
+                        <td>John Doe</td>
+                        <td>Sarah Wilson</td>
+                        <td>$350.00</td>
+                        <td><span class="badge bg-success">Credit</span></td>
+                    </tr>
+                    <tr class="table-danger">
+                        <td>2025-02-10</td>
+                        <td>#TXN901234</td>
+                        <td>John Doe</td>
+                        <td>Amazon Purchase</td>
+                        <td>-$150.00</td>
+                        <td><span class="badge bg-danger">Debit</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript for Search and Filter -->
+<script>
+    function filterTransactions() {
+        let searchInput = document.getElementById("searchInput").value.toLowerCase();
+        let dateFilter = document.getElementById("dateFilter").value;
+        let table = document.getElementById("transactionTable");
+        let rows = table.getElementsByTagName("tr");
+
+        for (let i = 1; i < rows.length; i++) {
+            let cols = rows[i].getElementsByTagName("td");
+            let date = cols[0].textContent;
+            let transactionId = cols[1].textContent.toLowerCase();
+            let debitor = cols[2].textContent.toLowerCase();
+            let creditor = cols[3].textContent.toLowerCase();
+            let amount = cols[4].textContent.toLowerCase();
+
+            let matchesSearch = searchInput === "" ||
+                transactionId.includes(searchInput) ||
+                debitor.includes(searchInput) ||
+                creditor.includes(searchInput) ||
+                amount.includes(searchInput);
+
+            let matchesDate = dateFilter === "" || date === dateFilter;
+
+            rows[i].style.display = matchesSearch && matchesDate ? "" : "none";
+        }
+    }
+</script>
