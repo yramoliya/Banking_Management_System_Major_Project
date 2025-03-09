@@ -198,12 +198,43 @@
 </div>
 
 
-<!-- Footer -->
+<!-- Footer
 <footer class="footer-section text-white text-center py-4 mt-5">
     <p>&copy; 2025 SecureBank | All Rights Reserved</p>
     <p>Contact: support@securebank.com | Phone: 1-800-123-4567</p>
 </footer>
+ -->
+<footer class="footer-section bg-dark text-white text-center py-4 mt-5">
+    <div class="container">
+        <div class="row">
+            <!-- Company Information -->
+            <div class="col-md-4 text-md-start mb-3">
+                <h5>SecureBank</h5>
+                <p>&copy; 2025 SecureBank | All Rights Reserved</p>
+                <p>Contact: <a href="mailto:support@securebank.com" class="text-light">support@securebank.com</a></p>
+                <p>Phone: <a href="tel:18001234567" class="text-light">1-800-123-4567</a></p>
+            </div>
 
+            <!-- Company Links -->
+            <div class="col-md-4 mb-3">
+                <h5>Company</h5>
+                <ul class="list-unstyled">
+                    <li><a href="@Url.Action("LoanService", "Bank")" class="text-light">About</a></li>
+                    <li><a href="@Url.Action("Contact_us", "Bank")" class="text-light">Contact</a></li>
+                    <li><a href="@Url.Action("Privacy", "Home")" class="text-light">Privacy Policy</a></li>
+                    <li><a href="@Url.Action("TermsCondition", "Bank")" class="text-light">Terms & Conditions</a></li>
+                </ul>
+            </div>
+
+            <!-- Newsletter Subscription -->
+            <div class="col-md-4 text-md-start">
+                <h5>Get the Latest News</h5>
+                <p>Stay updated with our latest blogs, events, and offers.</p>
+                <button class="btn btn-light text-dark">Join Now</button>
+            </div>
+        </div>
+    </div>
+</footer>
 
 <!-- Bootstrap 5 & Custom Styles -->
 <style>

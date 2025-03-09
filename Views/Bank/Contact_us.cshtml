@@ -1,0 +1,91 @@
+﻿@model ContactViewModel
+@{
+    ViewData["Title"] = "Contact Us";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+
+    <!-- Contact Us Page -->
+    <section class="container my-5">
+        <div class="text-center">
+            <h2 class="text-dark mb-4">Get in Touch with SecureBank</h2>
+            <p class="lead text-muted">We’re here to help you with all your banking needs.</p>
+        </div>
+
+        <div class="row g-4">
+            <!-- Contact Details -->
+            <div class="col-md-6">
+                <div class="card shadow p-4">
+                    <h4 class="text-primary mb-3">Contact Information</h4>
+                    <p><i class="fa fa-map-marker-alt text-danger"></i> 123 Bank Street, New York, NY 10001</p>
+                    <p><i class="fa fa-phone-alt text-success"></i> +1-800-123-4567</p>
+                    <p><i class="fa fa-envelope text-warning"></i> banking@gmail.com</p>
+                    <p><i class="fa fa-clock text-info"></i> Mon - Fri: 9:00 AM - 6:00 PM</p>
+                    <hr>
+                    <h5 class="d-inline me-2">Follow Us:</h5>
+                    <div class="d-inline-flex">
+                        <a href="#" class="btn btn-primary btn-sm rounded-circle d-flex align-items-center justify-content-center me-1" style="width: 35px; height: 35px;">
+                            <i class="fa fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="btn btn-info btn-sm rounded-circle d-flex align-items-center justify-content-center me-1" style="width: 35px; height: 35px;">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                        <a href="#" class="btn btn-danger btn-sm rounded-circle d-flex align-items-center justify-content-center" style="width: 35px; height: 35px;">
+                            <i class="fa fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="col-md-6">
+                <div class="card shadow p-4">
+                    <h4 class="text-primary mb-3">Send Us a Message</h4>
+                    <form>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Enter your full name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea class="form-control" id="message" rows="4" placeholder="Your message here..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Google Map -->
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="card shadow">
+                    <div class="card-body p-0">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.9488148473615!2d-74.006015!3d40.712776!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a183bdb8b1b%3A0xa51d62f0a90f4a33!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sus!4v1614093677385!5m2!1sen!2sus"
+                                width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

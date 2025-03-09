@@ -1,65 +1,101 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "InvestmentPlan";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 
 <div class="container mt-5">
     <h1 class="text-center mb-4">Our Investment Plans</h1>
     <p class="lead text-center text-muted">Grow your wealth with our expert investment plans.</p>
 
-    <div class="row g-4">
+    <div class="investment-scroll-container d-flex overflow-auto">
         <!-- Short-Term Investment Plan Card -->
-        <div class="col-md-4; mt-4">
-            <div class="card shadow-lg">
-                <img src="~/images/short-term-investment.jpg" class="card-img-top" alt="Short-Term Investment">
-                <div class="card-body text-center">
-                    <h5 class="card-title">Short-Term Investment</h5>
-                    <p class="card-text">Invest for a short period with guaranteed returns.</p>
-                    <ul class="list-unstyled">
-                        <li><strong>Investment Duration:</strong> 6 months - 1 year</li>
-                        <li><strong>Expected Returns:</strong> 4% - 6% annually</li>
-                        <li><strong>Risk Level:</strong> Low</li>
-                    </ul>
-                    <a href="#" class="btn btn-success">Invest Now</a>
-                </div>
+        <div class="card shadow-lg me-4" style="min-width: 300px; flex-shrink: 0;">
+            <img src="~/image/short-term-investment.jpg" class="card-img-top img-fluid reduced-height" alt="Short-Term Investment">
+            <div class="card-body text-center">
+                <h5 class="card-title">Short-Term Investment</h5>
+                <p class="card-text">Invest for a short period with guaranteed returns.</p>
+                <ul class="list-unstyled">
+                    <li><strong>Investment Duration:</strong> 6 months - 1 year</li>
+                    <li><strong>Expected Returns:</strong> 4% - 6% annually</li>
+                    <li><strong>Risk Level:</strong> Low</li>
+                </ul>
+                <a href="#" class="btn btn-success">Invest Now</a>
             </div>
         </div>
 
         <!-- Long-Term Investment Plan Card -->
-        <div class="col-md-4; mt-4">
-            <div class="card shadow-lg">
-                <img src="~/images/long-term-investment.jpg" class="card-img-top" alt="Long-Term Investment">
-                <div class="card-body text-center">
-                    <h5 class="card-title">Long-Term Investment</h5>
-                    <p class="card-text">Secure your future with a long-term investment plan offering higher returns.</p>
-                    <ul class="list-unstyled">
-                        <li><strong>Investment Duration:</strong> 5 years - 20 years</li>
-                        <li><strong>Expected Returns:</strong> 8% - 12% annually</li>
-                        <li><strong>Risk Level:</strong> Medium</li>
-                    </ul>
-                    <a href="#" class="btn btn-success">Invest Now</a>
-                </div>
+        <div class="card shadow-lg me-4" style="min-width: 300px; flex-shrink: 0;">
+            <img src="~/image/long-term-investment.jpg" class="card-img-top img-fluid reduced-height" alt="Long-Term Investment">
+            <div class="card-body text-center">
+                <h5 class="card-title">Long-Term Investment</h5>
+                <p class="card-text">Secure your future with a long-term investment plan offering higher returns.</p>
+                <ul class="list-unstyled">
+                    <li><strong>Investment Duration:</strong> 5 years - 20 years</li>
+                    <li><strong>Expected Returns:</strong> 8% - 12% annually</li>
+                    <li><strong>Risk Level:</strong> Medium</li>
+                </ul>
+                <a href="#" class="btn btn-success">Invest Now</a>
             </div>
         </div>
 
         <!-- Retirement Investment Plan Card -->
-        <div class="col-md-4; mt-4">
-            <div class="card shadow-lg">
-                <img src="~/images/retirement-investment.jpg" class="card-img-top" alt="Retirement Investment">
-                <div class="card-body text-center">
-                    <h5 class="card-title">Retirement Investment</h5>
-                    <p class="card-text">Prepare for your future with retirement-focused investment options.</p>
-                    <ul class="list-unstyled">
-                        <li><strong>Investment Duration:</strong> 15 years - 30 years</li>
-                        <li><strong>Expected Returns:</strong> 10% - 15% annually</li>
-                        <li><strong>Risk Level:</strong> High</li>
-                    </ul>
-                    <a href="#" class="btn btn-success">Invest Now</a>
-                </div>
+        <div class="card shadow-lg me-4" style="min-width: 300px; flex-shrink: 0;">
+            <img src="~/image/retirement-investment.png" class="card-img-top img-fluid reduced-height" alt="Retirement Investment">
+            <div class="card-body text-center">
+                <h5 class="card-title">Retirement Investment</h5>
+                <p class="card-text">Prepare for your future with retirement-focused investment options.</p>
+                <ul class="list-unstyled">
+                    <li><strong>Investment Duration:</strong> 15 years - 30 years</li>
+                    <li><strong>Expected Returns:</strong> 10% - 15% annually</li>
+                    <li><strong>Risk Level:</strong> High</li>
+                </ul>
+                <a href="#" class="btn btn-success">Invest Now</a>
+            </div>
+        </div>
+
+        <!-- Mutual Funds Investment Plan Card -->
+        <div class="card shadow-lg me-4" style="min-width: 300px; flex-shrink: 0;">
+            <img src="~/image/mutual-funds-investment.jpg" class="card-img-top img-fluid reduced-height" alt="Mutual Funds Investment">
+            <div class="card-body text-center">
+                <h5 class="card-title">Mutual Funds Investment</h5>
+                <p class="card-text">Invest in diversified mutual funds with professional management and steady returns.</p>
+                <ul class="list-unstyled">
+                    <li><strong>Investment Duration:</strong> 1 year - 10 years</li>
+                    <li><strong>Expected Returns:</strong> 6% - 10% annually</li>
+                    <li><strong>Risk Level:</strong> Medium</li>
+                </ul>
+                <a href="#" class="btn btn-success">Invest Now</a>
+            </div>
+        </div>
+
+        <!-- Stock Market Investment Plan Card -->
+        <div class="card shadow-lg me-4" style="min-width: 300px; flex-shrink: 0;">
+            <img src="~/image/stock-market-investment.jpg" class="card-img-top img-fluid reduced-height" alt="Stock Market Investment">
+            <div class="card-body text-center">
+                <h5 class="card-title">Stock Market Investment</h5>
+                <p class="card-text">Take advantage of the stock market to achieve high returns with a higher risk level.</p>
+                <ul class="list-unstyled">
+                    <li><strong>Investment Duration:</strong> 2 years - 15 years</li>
+                    <li><strong>Expected Returns:</strong> 12% - 25% annually</li>
+                    <li><strong>Risk Level:</strong> High</li>
+                </ul>
+                <a href="#" class="btn btn-success">Invest Now</a>
             </div>
         </div>
     </div>
 </div>
 
+<style>
+    .reduced-height {
+        height: 200px; /* Adjust the height as per your requirement */
+        object-fit: cover; /* Ensures the image covers the area while maintaining aspect ratio */
+    }
+
+    /* Scrollable horizontal container */
+    .investment-scroll-container {
+        display: flex;
+        overflow-x: auto; /* Enable horizontal scrolling */
+        padding-bottom: 20px; /* Ensure content is not cut off when scrolling */
+    }
+        }
+</style>

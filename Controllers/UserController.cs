@@ -2,19 +2,18 @@
 
 namespace Banking_Management_System_Major_Project.Controllers
 {
-    public class AdminController : Controller
+    public class UserController : Controller
     {
         public IActionResult Index()
         {
             return View();
         }
-
-        public IActionResult Users()
+        public IActionResult Dashboard()
         {
             return View();
         }
 
-        public IActionResult Transactions()
+        public IActionResult Profile()
         {
             return View();
         }
