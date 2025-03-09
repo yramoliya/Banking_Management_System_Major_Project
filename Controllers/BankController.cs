@@ -37,6 +37,14 @@ namespace Banking_Management_System_Major_Project.Controllers
         {
             return View();
         }
+        public IActionResult ForgotPassword()
+        {
+            return View();
+        }
+        public IActionResult AboutUs()
+        {
+            return View();
+        }
         public IActionResult Contact_us()
         {
             return View();

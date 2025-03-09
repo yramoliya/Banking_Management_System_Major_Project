@@ -94,23 +94,51 @@ namespace Banking_Management_System_Major_Project.Models
         //[RegularExpression(@"^[A-Z]{5}[0-9]{4}[A-Z]{1}$", ErrorMessage = "Invalid PAN card format (e.g., ABCDE1234F).")]
         //public string? PanCardNumber { get; set; }
 
-        public int Id { get; set; }
-        public string Title { get; set; }
+        //public int Id { get; set; }
+        //public string Title { get; set; }
+        //public string FirstName { get; set; }
+        //public string MiddleName { get; set; }
+        //public string LastName { get; set; }
+        //public DateTime DateOfBirth { get; set; }
+        //public string Gender { get; set; }
+        //public string Nationality { get; set; }
+        //public string AadhaarCardNumber { get; set; }
+        //public string PanCardNumber { get; set; }
+        //public string Email { get; set; }
+        //public string MobileNumber { get; set; }
+        //public string Address { get; set; }
+        //public string ZipCode { get; set; }
+        //public string BranchName { get; set; }
+        //public string AccountType { get; set; }
+        //public string AccountNumber { get; set; }
+        //public string IFSCCode { get; set; }
+
+        [Required(ErrorMessage = "First Name is required")]
         public string FirstName { get; set; }
-        public string MiddleName { get; set; }
+
+        [Required(ErrorMessage = "Last Name is required")]
         public string LastName { get; set; }
-        public DateTime DateOfBirth { get; set; }
-        public string Gender { get; set; }
-        public string Nationality { get; set; }
-        public string AadhaarCardNumber { get; set; }
-        public string PanCardNumber { get; set; }
+
+        [Required(ErrorMessage = "Email is required")]
+        [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string Email { get; set; }
-        public string MobileNumber { get; set; }
-        public string Address { get; set; }
-        public string ZipCode { get; set; }
-        public string BranchName { get; set; }
-        public string AccountType { get; set; }
-        public string AccountNumber { get; set; }
-        public string IFSCCode { get; set; }
+
+        [Required(ErrorMessage = "ID Number is required")]
+        public string IdNumber { get; set; }
+
+        [Required(ErrorMessage = "Username is required")]
+        public string UserName { get; set; }
+
+        [Required(ErrorMessage = "Password is required")]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
+
+        [Required(ErrorMessage = "Confirm Password is required")]
+        [DataType(DataType.Password)]
+        [Compare("Password", ErrorMessage = "Passwords do not match")]
+        public string ConfirmPassword { get; set; }
+
+        [Required(ErrorMessage = "Role is required")]
+        public string Role { get; set; }
     }
 }

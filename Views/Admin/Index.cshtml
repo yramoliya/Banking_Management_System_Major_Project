@@ -1,3 +1,120 @@
 ﻿@{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banking Management Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .dashboard-card {
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <div class="row g-4">
+            <!-- Account Summary -->
+            <div class="col-md-3">
+                <div class="p-4 bg-light dashboard-card">
+                    <h5>Total Balance</h5>
+                    <h3>$12,500</h3>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="p-4 bg-light dashboard-card">
+                    <h5>Transactions</h5>
+                    <h3>230</h3>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="p-4 bg-light dashboard-card">
+                    <h5>Revenue</h5>
+                    <h3>$6,250</h3>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="p-4 bg-light dashboard-card">
+                    <h5>Users</h5>
+                    <h3>1,200</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts -->
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <canvas id="transactionsChart"></canvas>
+            </div>
+            <div class="col-md-6">
+                <canvas id="salesChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Latest Transactions -->
+        <div class="mt-4">
+            <h4>Latest Transactions</h4>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Name</th>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>#MB2540</td>
+                        <td>Neal Matthews</td>
+                        <td>07 Oct</td>
+                        <td>$500</td>
+                        <td class="text-success">Paid</td>
+                    </tr>
+                    <tr>
+                        <td>#SM5625</td>
+                        <td>Lavern Hochstetler</td>
+                        <td>11 Oct</td>
+                        <td>$600</td>
+                        <td class="text-danger">Cancelled</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        var ctx1 = document.getElementById('transactionsChart').getContext('2d');
+        var transactionsChart = new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Transactions',
+                    data: [30, 45, 50, 40, 60, 70],
+                    backgroundColor: 'rgba(54, 162, 235, 0.6)'
+                }]
+            }
+        });
+
+        var ctx2 = document.getElementById('salesChart').getContext('2d');
+        var salesChart = new Chart(ctx2, {
+            type: 'pie',
+            data: {
+                labels: ['US', 'Italy', 'Spain', 'France'],
+                datasets: [{
+                    label: 'Sales by Country',
+                    data: [30000, 72000, 42000, 56000],
+                    backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4CAF50']
+                }]
+            }
+        });
+    </script>
+</body>
+</html>

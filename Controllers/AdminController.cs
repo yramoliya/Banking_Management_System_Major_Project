@@ -14,7 +14,32 @@ namespace Banking_Management_System_Major_Project.Controllers
             return View();
         }
 
+        // Manage Accounts
+        public IActionResult Accounts()
+        {
+            return View();
+        }
+
+        // Manage Transactions
         public IActionResult Transactions()
+        {
+            return View();
+        }
+
+        // Loan Approvals
+        public IActionResult Loans()
+        {
+            return View();
+        }
+
+        // Reports & Analytics
+        public IActionResult Reports()
+        {
+            return View();
+        }
+
+        // Settings Page
+        public IActionResult Settings()
         {
             return View();
         }
