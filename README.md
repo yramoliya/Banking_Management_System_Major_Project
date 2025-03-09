@@ -61,16 +61,7 @@ Welcome to the **Banking Management System**, a secure and efficient platform bu
 
 4️⃣ Open your browser and go to:  
    ```sh
-   http://localhost:5000
+   http://localhost:#
    ```
-
----
-
-## 📞 Contact & Support
-For any issues or inquiries, please contact our support team:  
-📧 **Email:** support@securebank.com  
-🌍 **Website:** [SecureBank Official](https://securebank.com)  
-
----
 
 ⭐ **Join us today and experience the future of digital banking!** 🚀
