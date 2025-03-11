@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿    using System.ComponentModel.DataAnnotations;
 namespace Banking_Management_System_Major_Project.Models
 {
     public class ContactViewModel

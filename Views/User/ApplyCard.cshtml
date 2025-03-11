@@ -1,0 +1,53 @@
+﻿@model Banking_Management_System_Major_Project.Models.UserModel.ApplyCardViewModel
+@{
+    ViewData["Title"] = "Apply for Credit/Debit Card";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h2>Apply for Credit/Debit Card</h2>
+
+<form asp-action="ApplyCard" method="post">
+    <div class="form-group">
+        <label asp-for="FullName"></label>
+        <input asp-for="FullName" class="form-control" />
+        <span asp-validation-for="FullName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="AccountNumber"></label>
+        <input asp-for="AccountNumber" class="form-control" />
+        <span asp-validation-for="AccountNumber" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CardType"></label>
+        <select asp-for="CardType" class="form-control">
+            <option value="Credit">Credit</option>
+            <option value="Debit">Debit</option>
+        </select>
+        <span asp-validation-for="CardType" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CardVariant"></label>
+        <select asp-for="CardVariant" class="form-control">
+            <option value="Visa">Visa</option>
+            <option value="MasterCard">MasterCard</option>
+        </select>
+        <span asp-validation-for="CardVariant" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CreditLimit"></label>
+        <input asp-for="CreditLimit" class="form-control" />
+        <span asp-validation-for="CreditLimit" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
