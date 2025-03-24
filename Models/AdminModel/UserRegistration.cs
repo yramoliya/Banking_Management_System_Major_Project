@@ -42,9 +42,11 @@ namespace Banking_Management_System_Major_Project.Models.AdminModel
         [RegularExpression(@"^\d{10}$", ErrorMessage = "Mobile number must be 10 digits.")]
         public string Mobile { get; set; } // Changed to string to prevent leading zero issues
 
-        [Required(ErrorMessage = "Date of birth is required.")]
+        [Required]
         [DataType(DataType.Date)]
+        [Range(typeof(DateTime), "1900-01-01", "2006-12-31", ErrorMessage = "User must be at least 18 years old.")]
         public DateTime DateOfBirth { get; set; }
+
 
         [Required(ErrorMessage = "Username is required.")]
         [StringLength(50, MinimumLength = 3, ErrorMessage = "Username must be between 3 and 50 characters.")]
@@ -53,6 +55,9 @@ namespace Banking_Management_System_Major_Project.Models.AdminModel
         [Required(ErrorMessage = "Password is required.")]
         [DataType(DataType.Password)]
         [StringLength(100, MinimumLength = 6, ErrorMessage = "Password must be at least 6 characters.")]
+        [RegularExpression(@"^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$",
+        ErrorMessage = "Password must contain at least one letter, one number, and one special character.")]
+
         public string Password { get; set; }
 
         [Required(ErrorMessage = "Confirm Password is required.")]

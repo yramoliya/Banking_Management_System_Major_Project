@@ -1,13 +1,54 @@
 ﻿using Banking_Management_System_Major_Project.Models;
+using Banking_Management_System_Major_Project.Models.AdminModel;
 using Microsoft.AspNetCore.Mvc;
+
 
 namespace Banking_Management_System_Major_Project.Controllers
 {
     public class BankController : Controller
     {
+        private readonly ApplicationDbContext _context;
         public IActionResult Login()
         {
             return View();
+        }
+
+        // POST: Handle Login
+        [HttpPost]
+        public IActionResult Login(UserRegistration model)
+        {
+            if (ModelState.IsValid)
+            {
+                // Check if user exists in the database
+                var user = _context.UserRegistrations
+                    .FirstOrDefault(u => u.Username == model.Username && u.Password == model.Password);
+
+                if (user != null)
+                {
+                    // Store user info in session
+                    HttpContext.Session.SetInt32("UserId", user.User_Id);
+                    HttpContext.Session.SetString("Username", user.Username);
+                    HttpContext.Session.SetString("Role", user.Role.ToString());
+
+                    TempData["SuccessMessage"] = "Login successful!";
+
+                    // Redirect based on role
+                    if (user.Role == Role.Admin)
+                    {
+                        return RedirectToAction("AdminDashboard", "Admin");
+                    }
+                    else
+                    {
+                        return RedirectToAction("UserDashboard", "User");
+                    }
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = "Invalid Username or Password.";
+                }
+            }
+
+            return View(model);
         }
 
         public IActionResult Register()

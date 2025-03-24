@@ -1,8 +1,9 @@
-﻿@{
+﻿@model Banking_Management_System_Major_Project.Models.AdminModel.UserRegistration
+
+@{
     ViewData["Title"] = "Login";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 
 <!-- Section: Design Block -->
 <section class="text-center">
@@ -13,22 +14,25 @@
         <div class="card-body py-5 px-md-5">
 
             <div class="row d-flex justify-content-center">
-                <div class="col-lg-8">
+                <div class="col-lg-6">
                     <h2 class="fw-bold mb-5">Sign in</h2>
-                    <form>
-                        <!-- Email input -->
-                        <div class="form-outline mb-4">
-                            <input type="email" id="email" class="form-control" required />
-                            <label class="form-label" for="email">Email address</label>
+
+                    <form asp-action="Login" method="post">
+                        <!-- Username Input -->
+                        <div class="mb-4">
+                            <label class="form-label">Username</label>
+                            <input asp-for="Username" class="form-control" placeholder="Enter Username" required />
+                            <span class="text-danger" asp-validation-for="Username"></span>
                         </div>
 
-                        <!-- Password input -->
-                        <div class="form-outline mb-4">
-                            <input type="password" id="password" class="form-control" required />
-                            <label class="form-label" for="password">Password</label>
+                        <!-- Password Input -->
+                        <div class="mb-4">
+                            <label class="form-label">Password</label>
+                            <input asp-for="Password" type="password" class="form-control" placeholder="Enter Password" required />
+                            <span class="text-danger" asp-validation-for="Password"></span>
                         </div>
 
-                        <!-- Submit button -->
+                        <!-- Submit Button -->
                         <button type="submit" class="btn btn-primary btn-block mb-4">
                             Sign in
                         </button>
@@ -44,4 +48,3 @@
         </div>
     </div>
 </section>
-<!-- Section: Design Block -->
