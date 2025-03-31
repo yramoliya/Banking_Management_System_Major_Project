@@ -1,11 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.AspNetCore.Http;
 namespace Banking_Management_System_Major_Project.Controllers
 {
     public class AdminController : Controller
     {
         public IActionResult Index()
         {
+            if (HttpContext.Session.GetString("UserRole") != "Admin")
+            {
+                return RedirectToAction("Login", "Bank"); // Restrict access if not admin
+            }
             return View();
         }
 
@@ -46,7 +50,8 @@ namespace Banking_Management_System_Major_Project.Controllers
 
         public IActionResult Logout()
         {
-            return RedirectToAction("Login", "Account");
+            HttpContext.Session.Clear();
+            return RedirectToAction("Login", "Bank");
         }
     }
 }

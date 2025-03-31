@@ -9,6 +9,10 @@ namespace Banking_Management_System_Major_Project.Controllers
     {
         public IActionResult Index()
         {
+            if (HttpContext.Session.GetString("UserRole") != "User")
+            {
+                return RedirectToAction("Login", "Bank"); // Restrict access if not user
+            }
             return View();
         }
         public IActionResult ApplyCard()
@@ -60,6 +64,7 @@ namespace Banking_Management_System_Major_Project.Controllers
         [HttpPost]
         public async Task<IActionResult> LogoutConfirmed()
         {
+            HttpContext.Session.Clear();
             return RedirectToAction("Index", "Home");
         }
     }

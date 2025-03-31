@@ -1,8 +1,11 @@
-﻿@model Banking_Management_System_Major_Project.Models.AdminModel.UserRegistration
-
+@model Banking_Management_System_Major_Project.Models.Register_user
 @{
     ViewData["Title"] = "Register";
     Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    bool isAdmin = User.IsInRole("Admin"); // Check if the logged-in user is an Admin
 }
 
 <!DOCTYPE html>
@@ -26,22 +29,15 @@
                             <!-- First Name -->
                             <div class="mb-3">
                                 <label class="form-label">First Name</label>
-                                <input asp-for="Fname" class="form-control" placeholder="Enter First Name">
-                                <span class="text-danger" asp-validation-for="Fname"></span>
-                            </div>
-
-                            <!-- Middle Name -->
-                            <div class="mb-3">
-                                <label class="form-label">Middle Name</label>
-                                <input asp-for="Mname" class="form-control" placeholder="Enter Middle Name">
-                                <span class="text-danger" asp-validation-for="Mname"></span>
+                                <input asp-for="FirstName" class="form-control" placeholder="Enter First Name">
+                                <span class="text-danger" asp-validation-for="FirstName"></span>
                             </div>
 
                             <!-- Last Name -->
                             <div class="mb-3">
                                 <label class="form-label">Last Name</label>
-                                <input asp-for="Lname" class="form-control" placeholder="Enter Last Name">
-                                <span class="text-danger" asp-validation-for="Lname"></span>
+                                <input asp-for="LastName" class="form-control" placeholder="Enter Last Name">
+                                <span class="text-danger" asp-validation-for="LastName"></span>
                             </div>
 
                             <!-- Email -->
@@ -49,39 +45,6 @@
                                 <label class="form-label">Email</label>
                                 <input asp-for="Email" class="form-control" placeholder="Enter Email">
                                 <span class="text-danger" asp-validation-for="Email"></span>
-                            </div>
-
-                            <!-- Gender -->
-                            <div class="mb-3">
-                                <label class="form-label">Gender</label>
-                                <select asp-for="Gender" class="form-select">
-                                    <option value="">Select Gender</option>
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                    <option value="Other">Other</option>
-                                </select>
-                                <span class="text-danger" asp-validation-for="Gender"></span>
-                            </div>
-
-                            <!-- Mobile Number -->
-                            <div class="mb-3">
-                                <label class="form-label">Mobile Number</label>
-                                <input asp-for="Mobile" class="form-control" placeholder="Enter Mobile Number">
-                                <span class="text-danger" asp-validation-for="Mobile"></span>
-                            </div>
-
-                            <!-- Date of Birth -->
-                            <div class="mb-3">
-                                <label class="form-label">Date of Birth</label>
-                                <input asp-for="DateOfBirth" type="date" class="form-control">
-                                <span class="text-danger" asp-validation-for="DateOfBirth"></span>
-                            </div>
-
-                            <!-- Username -->
-                            <div class="mb-3">
-                                <label class="form-label">Username</label>
-                                <input asp-for="Username" class="form-control" placeholder="Enter Username">
-                                <span class="text-danger" asp-validation-for="Username"></span>
                             </div>
 
                             <!-- Password -->
@@ -101,20 +64,24 @@
                             <!-- Role -->
                             <div class="mb-3">
                                 <label class="form-label">Role</label>
-                                <select asp-for="Role" class="form-select">
-                                    <option value="">Select Role</option>
-                                    <option value="Admin">Admin</option>
-                                    <option value="User">User</option>
-                                </select>
+                                @if (isAdmin)
+                                {
+                                    <select asp-for="Role" class="form-select" asp-items="Html.GetEnumSelectList<UserRole>()"></select>
+                                }
+                                else
+                                {
+                                    <input asp-for="Role" class="form-control" value="User" readonly>
+                                }
                                 <span class="text-danger" asp-validation-for="Role"></span>
                             </div>
 
                             <button type="submit" class="btn btn-primary w-100">Register</button>
-                        </form><br />
+                        </form>
+                        <br />
 
-                        <!-- Already have account -->
+                        <!-- Already have account section (single instance) -->
                         <div class="text-center mb-4">
-                            Already have an account? <a href="Login">Login Here</a>
+                            Already have an account? <a asp-action="Login" asp-controller="Bank">Login Here</a>
                         </div>
                     </div>
                 </div>
@@ -124,6 +91,10 @@
     <br />
     <br />
 
+    <!-- Required Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
 </body>
 </html>

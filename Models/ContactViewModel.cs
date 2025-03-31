@@ -1,6 +1,9 @@
-﻿    using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.Data.SqlClient;
+
 namespace Banking_Management_System_Major_Project.Models
 {
+    //SqlConnection con = new SqlConnection(@"");
     public class ContactViewModel
     {
         [Required(ErrorMessage = "Full Name is required")]
@@ -15,4 +18,5 @@ namespace Banking_Management_System_Major_Project.Models
         [StringLength(500, ErrorMessage = "Message cannot exceed 500 characters")]
         public string Message { get; set; }
     }
+
 }

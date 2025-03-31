@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.Data.SqlClient;
 
 namespace Banking_Management_System_Major_Project.Models.AdminModel
 {

@@ -1,61 +1,76 @@
 ﻿using Banking_Management_System_Major_Project.Models;
 using Banking_Management_System_Major_Project.Models.AdminModel;
 using Microsoft.AspNetCore.Mvc;
+using System.Reflection;
+using Microsoft.AspNetCore.Http;
 
 
 namespace Banking_Management_System_Major_Project.Controllers
 {
     public class BankController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        LoginModel login = new LoginModel();
+        Register_user reg = new Register_user();
+
         public IActionResult Login()
         {
             return View();
         }
-
-        // POST: Handle Login
         [HttpPost]
-        public IActionResult Login(UserRegistration model)
+        public IActionResult Login(LoginModel lm)
         {
-            if (ModelState.IsValid)
+           if (ModelState.IsValid)
             {
-                // Check if user exists in the database
-                var user = _context.UserRegistrations
-                    .FirstOrDefault(u => u.Username == model.Username && u.Password == model.Password);
-
-                if (user != null)
+                if (login.ValidateUser(lm.Email, lm.Password, out int userId, out string role))
                 {
-                    // Store user info in session
-                    HttpContext.Session.SetInt32("UserId", user.User_Id);
-                    HttpContext.Session.SetString("Username", user.Username);
-                    HttpContext.Session.SetString("Role", user.Role.ToString());
+                    // Store user details in session
+                    HttpContext.Session.SetInt32("UserId", userId);
+                    HttpContext.Session.SetString("UserEmail", lm.Email);
+                    HttpContext.Session.SetString("UserRole", role);
 
                     TempData["SuccessMessage"] = "Login successful!";
 
                     // Redirect based on role
-                    if (user.Role == Role.Admin)
+                    if (role == "Admin")
                     {
-                        return RedirectToAction("AdminDashboard", "Admin");
+                        return RedirectToAction("Index", "Admin");
                     }
                     else
                     {
-                        return RedirectToAction("UserDashboard", "User");
+                        return RedirectToAction("Index", "User");
                     }
                 }
                 else
                 {
-                    TempData["ErrorMessage"] = "Invalid Username or Password.";
+                    TempData["ErrorMessage"] = "Invalid email or password.";
+                    return View(lm);
                 }
             }
-
-            return View(model);
+            return View(lm);
         }
-
         public IActionResult Register()
         {
             return View();
         }
+        [HttpPost]
+        public IActionResult Register(Register_user reguser)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(reguser);
+            }
 
+            string message;
+            bool res = reg.Insert(reguser, out message);
+
+            TempData["msg"] = message;
+            if (res)
+            {
+                return RedirectToAction("Login");
+            }
+
+            return View(reguser);
+        }
         public IActionResult LoanService()
         {
             return View();
@@ -102,5 +117,6 @@ namespace Banking_Management_System_Major_Project.Controllers
 
             return View(model);
         }
+
     }
 }
