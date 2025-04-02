@@ -6,7 +6,6 @@ namespace Banking_Management_System_Major_Project.Models
     public class LoginModel
     {
         SqlConnection con = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=BMS;Integrated Security=True;Connect Timeout=30;Encrypt=False;");
-
         [Required(ErrorMessage = "Email is required.")]
         [EmailAddress(ErrorMessage = "Invalid Email format.")]
         public string Email { get; set; }

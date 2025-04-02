@@ -1,66 +1,89 @@
 ﻿@model Banking_Management_System_Major_Project.Models.UserModel.ApplyCardViewModel;
 @{
     ViewData["Title"] = "ApplyCard";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg border-0 rounded-3">
+                <div class="card-header bg-primary text-white text-center">
+                    <h4 class="mb-0">Apply for a Credit Card</h4>
+                </div>
+                <div class="card-body">
+                    @if (TempData["ErrorMessage"] != null)
+                    {
+                        <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+                    }
+                    @if (TempData["SuccessMessage"] != null)
+                    {
+                        <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+                    }
+                    
+                    <form asp-action="Create" id="applyCardForm" method="post">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
 
-<hr />
-<div class="row">
-    <div class="col-md-6">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            
-            <div class="form-group">
-                <label asp-for="FullName" class="control-label"></label>
-                <input asp-for="FullName" class="form-control" />
-                <span asp-validation-for="FullName" class="text-danger"></span>
+                        <div class="mb-3">
+                            <label asp-for="FullName" class="form-label fw-bold">Full Name</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-person"></i></span>
+                                <input asp-for="FullName" class="form-control" placeholder="Enter your full name" required />
+                            </div>
+                            <span asp-validation-for="FullName" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="AccountNumber" class="form-label fw-bold">Account Number</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-bank"></i></span>
+                                <input asp-for="AccountNumber" class="form-control" placeholder="Enter your account number" required />
+                            </div>
+                            <span asp-validation-for="AccountNumber" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="CardType" class="form-label fw-bold">Card Type</label>
+                            <select asp-for="CardType" class="form-select" required>
+                                <option value="">-- Select Card Type --</option>
+                                <option value="Visa">Visa</option>
+                                <option value="MasterCard">MasterCard</option>
+                                <option value="American Express">American Express</option>
+                                <option value="Discover">Discover</option>
+                            </select>
+                            <span asp-validation-for="CardType" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="CardVariant" class="form-label fw-bold">Card Variant</label>
+                            <select asp-for="CardVariant" class="form-select" required>
+                                <option value="">-- Select Card Variant --</option>
+                                <option value="Standard">Standard</option>
+                                <option value="Gold">Gold</option>
+                                <option value="Platinum">Platinum</option>
+                                <option value="Signature">Signature</option>
+                                <option value="Infinite">Infinite</option>
+                            </select>
+                            <span asp-validation-for="CardVariant" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="CreditLimit" class="form-label fw-bold">Credit Limit</label>
+                            <input asp-for="CreditLimit" class="form-control" type="number" min="5000" max="500000" placeholder="Enter credit limit" required />
+                            <span asp-validation-for="CreditLimit" class="text-danger"></span>
+                        </div>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button type="submit" class="btn btn-success me-md-2"><i class="bi bi-check-circle"></i> Apply</button>
+                            <a asp-action="Index" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> Back to List</a>
+                        </div>
+                    </form>
+                </div>
             </div>
-            
-            <div class="form-group">
-                <label asp-for="AccountNumber" class="control-label"></label>
-                <input asp-for="AccountNumber" class="form-control" />
-                <span asp-validation-for="AccountNumber" class="text-danger"></span>
-            </div>
-            
-            <div class="form-group">
-                <label asp-for="CardType" class="control-label"></label>
-                <select asp-for="CardType" class="form-control">
-                    <option value="">-- Select Card Type --</option>
-                    <option value="Visa">Visa</option>
-                    <option value="MasterCard">MasterCard</option>
-                    <option value="American Express">American Express</option>
-                    <option value="Discover">Discover</option>
-                </select>
-                <span asp-validation-for="CardType" class="text-danger"></span>
-            </div>
-            
-            <div class="form-group">
-                <label asp-for="CardVariant" class="control-label"></label>
-                <select asp-for="CardVariant" class="form-control">
-                    <option value="">-- Select Card Variant --</option>
-                    <option value="Standard">Standard</option>
-                    <option value="Gold">Gold</option>
-                    <option value="Platinum">Platinum</option>
-                    <option value="Signature">Signature</option>
-                    <option value="Infinite">Infinite</option>
-                </select>
-                <span asp-validation-for="CardVariant" class="text-danger"></span>
-            </div>
-            
-            <div class="form-group">
-                <label asp-for="CreditLimit" class="control-label"></label>
-                <input asp-for="CreditLimit" class="form-control" type="number" min="5000" max="500000" />
-                <span asp-validation-for="CreditLimit" class="text-danger"></span>
-            </div>
-            
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
-            </div>
-        </form>
+        </div>
     </div>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <partial name="_ValidationScriptsPartial" />
 }
