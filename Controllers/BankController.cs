@@ -21,11 +21,12 @@ namespace Banking_Management_System_Major_Project.Controllers
         {
            if (ModelState.IsValid)
             {
-                if (login.ValidateUser(lm.Email, lm.Password, out int userId, out string role))
+                if (login.ValidateUser(lm.Email, lm.Password, out string FirstName, out int userId, out string role))
                 {
                     // Store user details in session
                     HttpContext.Session.SetInt32("UserId", userId);
                     HttpContext.Session.SetString("UserEmail", lm.Email);
+                    HttpContext.Session.SetString("UserFirstName", FirstName);
                     HttpContext.Session.SetString("UserRole", role);
 
                     TempData["SuccessMessage"] = "Login successful!";

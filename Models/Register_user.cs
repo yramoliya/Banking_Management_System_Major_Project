@@ -81,10 +81,10 @@ namespace Banking_Management_System_Major_Project.Models
         {
             try
             {
-                string senderEmail = "parthtank2231@gmail.com";  // Your Gmail address
-                string senderPassword = "ndqx tens vezx yako";  // Your Gmail App Password
+                string senderEmail = "parthtank2231@gmail.com";  // Replace with your email
+                string senderPassword = "vqys xoon mbam mbkj"; // Replace with your App Password
                 string subject = "Registration Successful";
-                string body = $"Hello {firstName},\n\nWelcome to our system! Your registration was successful.\n\nBest Regards,\nYour Company Name";
+                string body = $"Hello {firstName},\n\nYour registration was successful! You can now log in to your account.\n\nBest Regards,\nYour Banking System";
 
                 MailMessage mail = new MailMessage();
                 mail.From = new MailAddress(senderEmail);
@@ -96,9 +96,7 @@ namespace Banking_Management_System_Major_Project.Models
                 SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
                 smtp.Credentials = new NetworkCredential(senderEmail, senderPassword);
                 smtp.EnableSsl = true;
-
                 smtp.Send(mail);
-                Console.WriteLine("Email sent successfully!");
             }
             catch (Exception ex)
             {

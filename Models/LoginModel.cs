@@ -14,11 +14,12 @@ namespace Banking_Management_System_Major_Project.Models
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        public bool ValidateUser(string email, string password, out int userId, out string role)
+        public bool ValidateUser(string email, string password, out string FirstName, out int userId, out string role)
         {
             userId = 0;
             role = "";
-            string query = "SELECT UserId, Role from Register WHERE Email = @Email AND Password = @Password";
+            FirstName = "";
+            string query = "SELECT UserId,FirstName, Role from Register WHERE Email = @Email AND Password = @Password";
             SqlCommand cmd = new SqlCommand(query, con);
             cmd.Parameters.AddWithValue("@Email", email);
             cmd.Parameters.AddWithValue("@Password", password);
@@ -28,6 +29,7 @@ namespace Banking_Management_System_Major_Project.Models
             {
                 userId = (int)reader["UserId"];
                 role = reader["Role"].ToString(); // Get role from DB
+                FirstName = reader["FirstName"].ToString();
                 return true;
             }
             return false;

@@ -11,85 +11,165 @@
     <link rel="stylesheet" href="~/Banking_Management_System_Major_Project.styles.css" asp-append-version="true" />
 </head>
 <body>
+    @* <header> *@
+    @*     <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="light"> *@
+    @*         <div class="container-fluid"> *@
+    @*             <a class="navbar-brand" href="@Url.Action("Index","Home")">BMS</a> *@
+    @*             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation"> *@
+    @*                 <span class="navbar-toggler-icon"></span> *@
+    @*             </button> *@
+    @*             <div class="collapse navbar-collapse" id="navbarColor02"> *@
+    @*                 <ul class="navbar-nav me-auto"> *@
+    @*                     <li class="nav-item"> *@
+    @*                         <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a> *@
+    @*                     </li> *@
+    @*                     <li class="nav-item"> *@
+    @*                         <a class="nav-link text-dark" asp-area="" asp-controller="Bank" asp-action="Contact_us">Contact Us</a> *@
+    @*                     </li> *@
+    @*                     <li class="nav-item"> *@
+    @*                         <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a> *@
+    @*                     </li> *@
+
+    @*                     <li class="nav-item dropdown"> *@
+    @*                         <div class="nav-link text-dark dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Services</div> *@
+    @*                         <div class="dropdown-menu"> *@
+    @*                             <a class="dropdown-item" href="@Url.Action("AboutUs", "Bank")">About Us</a> *@
+    @*                             <a class="dropdown-item" href="@Url.Action("LoanService", "Bank")">Loan Service</a> *@
+    @*                             <a class="dropdown-item" href="@Url.Action("Fund", "Bank")">Fund Transfer</a> *@
+    @*                             <a class="dropdown-item" href="@Url.Action("Transactions", "Bank")">Transaction History</a> *@
+    @*                             <a class="dropdown-item" href="@Url.Action("InvestmentPlan", "Bank")">Investment Plan</a> *@
+    @*                             <div class="dropdown-divider"></div> *@
+    @*                             <a class="dropdown-item" href="@Url.Action("Privacy", "Home")">Privacy Policy</a> *@
+    @*                             <a class="dropdown-item" href="@Url.Action("TermsCondition", "Bank")">Terms & Condition</a> *@
+    @*                         </div> *@
+    @*                     </li> *@
+
+    @*                 <form class="d-flex"> *@
+    @*                     <input class="form-control me-sm-2" type="search" placeholder="Search"> *@
+    @*                     <button class="btn btn-secondary my-2 my-sm-0" type="submit" fdprocessedid="q8saqs">Search</button> *@
+    @*                 </form> *@
+
+                     
+    @*                     @if (HttpContextAccessor.HttpContext.Session.GetString("UserEmail") == null) *@
+    @*                     { *@
+    @*                         <!-- Before Login --> *@
+    @*                         <li class="nav-item"> *@
+    @*                             <a class="nav-link text-dark" asp-area="" asp-controller="Bank" asp-action="Login">Login</a> *@
+    @*                         </li> *@
+    @*                         <li class="nav-item"> *@
+    @*                             <a class="nav-link text-dark" asp-area="" asp-controller="Bank" asp-action="Register">Register</a> *@
+    @*                         </li> *@
+    @*                     } *@
+    @*                     else *@
+    @*                     { *@
+    @*                         <!-- After Login --> *@
+    @*                         <li class="nav-item"> *@
+    @*                             <a class="nav-link">Welcome, @HttpContextAccessor.HttpContext.Session.GetString("UserEmail")</a> *@
+    @*                         </li> *@
+
+    @*                         @if (HttpContextAccessor.HttpContext.Session.GetString("UserRole") == "Admin") *@
+    @*                         { *@
+    @*                             <li class="nav-item"> *@
+    @*                                 <a class="nav-link" asp-controller="Admin" asp-action="Index">Admin Dashboard</a> *@
+    @*                             </li> *@
+    @*                         } *@
+    @*                         else *@
+    @*                         { *@
+    @*                             <li class="nav-item"> *@
+    @*                                 <a class="nav-link" asp-controller="User" asp-action="Index">User Dashboard</a> *@
+    @*                             </li> *@
+    @*                         } *@
+
+    @*                         <li class="nav-item"> *@
+    @*                             <a class="nav-link" asp-controller="User" asp-action="Logout">Logout</a> *@
+    @*                         </li> *@
+    @*                     } *@
+    @*                 </ul> *@
+    @*             </div> *@
+    @*         </div> *@
+    @*     </nav> *@
+     
+    @* </header> *@
     <header>
-        <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="light">
+        <nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
             <div class="container-fluid">
-                <a class="navbar-brand" href="@Url.Action("Index","Home")">BMS</a>
+                <a class="navbar-brand fw-bold" href="@Url.Action("Index","Home")">🏦 BMS</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarColor02">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">🏠 Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Bank" asp-action="Contact_us">Contact Us</a>
+                            <a class="nav-link text-dark" asp-controller="Bank" asp-action="Contact_us">📞 Contact Us</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-controller="Home" asp-action="Privacy">🔒 Privacy</a>
                         </li>
 
                         <li class="nav-item dropdown">
-                            <div class="nav-link text-light dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Services</div>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="@Url.Action("AboutUs", "Bank")">About Us</a>
-                                <a class="dropdown-item" href="@Url.Action("LoanService", "Bank")">Loan Service</a>
-                                <a class="dropdown-item" href="@Url.Action("Fund", "Bank")">Fund Transfer</a>
-                                <a class="dropdown-item" href="@Url.Action("Transactions", "Bank")">Transaction History</a>
-                                <a class="dropdown-item" href="@Url.Action("InvestmentPlan", "Bank")">Investment Plan</a>
+                            <a class="nav-link text-dark dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">💼 Services</a>
+                            <ul class="dropdown-menu custom-dropdown">
+                                <li><a class="dropdown-item" href="@Url.Action("AboutUs", "Bank")">📘 About Us</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("LoanService", "Bank")">💰 Loan Service</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Fund", "Bank")">💸 Fund Transfer</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Transactions", "Bank")">📜 Transaction History</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("InvestmentPlan", "Bank")">📊 Investment Plan</a></li>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="@Url.Action("Privacy", "Home")">Privacy Policy</a>
-                                <a class="dropdown-item" href="@Url.Action("TermsCondition", "Bank")">Terms & Condition</a>
-                            </div>
+                                <li><a class="dropdown-item" href="@Url.Action("Privacy", "Home")">🔐 Privacy Policy</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("TermsCondition", "Bank")">📜 Terms & Condition</a></li>
+                            </ul>
                         </li>
+                    </ul>
 
-                    <form class="d-flex">
-                        <input class="form-control me-sm-2" type="search" placeholder="Search">
-                        <button class="btn btn-secondary my-2 my-sm-0" type="submit" fdprocessedid="q8saqs">Search</button>
+                    <form class="d-flex search-box">
+                        <input class="form-control me-sm-2" type="search" placeholder="🔎 Search">
+                        <button class="btn btn-light" type="submit">Search</button>
                     </form>
 
-                     
-                        @if (HttpContextAccessor.HttpContext.Session.GetString("UserEmail") == null)
+                    <ul class="navbar-nav">
+                        @if (HttpContextAccessor.HttpContext.Session.GetString("UserFirstName") == null)
                         {
                             <!-- Before Login -->
                             <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-controller="Bank" asp-action="Login">Login</a>
+                                <a class="nav-link btn-login text-dark" asp-controller="Bank" asp-action="Login">🔑 Login</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-controller="Bank" asp-action="Register">Register</a>
+                                <a class="nav-link btn-register text-dark" asp-controller="Bank" asp-action="Register">📝 Register</a>
                             </li>
                         }
                         else
                         {
                             <!-- After Login -->
                             <li class="nav-item">
-                                <a class="nav-link">Welcome, @HttpContextAccessor.HttpContext.Session.GetString("UserEmail")</a>
+                                <a class="nav-link text-dark">👋 Welcome, @HttpContextAccessor.HttpContext.Session.GetString("UserFirstName")</a>
                             </li>
 
                             @if (HttpContextAccessor.HttpContext.Session.GetString("UserRole") == "Admin")
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link" asp-controller="Admin" asp-action="Index">Admin Dashboard</a>
+                                    <a class="nav-link text-dark btn-dashboard" asp-controller="Admin" asp-action="Index">⚙️ Admin Dashboard</a>
                                 </li>
                             }
                             else
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link" asp-controller="User" asp-action="Index">User Dashboard</a>
+                                    <a class="nav-link text-dark btn-dashboard" asp-controller="User" asp-action="Index">👤 User Dashboard</a>
                                 </li>
                             }
 
                             <li class="nav-item">
-                                <a class="nav-link" asp-controller="User" asp-action="Logout">Logout</a>
+                                <a class="nav-link btn-logout text-dark" asp-controller="User" asp-action="Logout">🚪 Logout</a>
                             </li>
                         }
                     </ul>
                 </div>
             </div>
         </nav>
-     
     </header>
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
