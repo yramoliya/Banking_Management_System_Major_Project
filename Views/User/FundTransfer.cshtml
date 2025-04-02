@@ -1,0 +1,74 @@
+﻿@model Banking_Management_System_Major_Project.Models.UserModel.FundTransferViewModel;
+@{
+    ViewData["Title"] = "FundTransfer";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg border-0 rounded-3">
+                <div class="card-header bg-primary text-white text-center">
+                    <h4 class="mb-0">Fund Transfer</h4>
+                </div>
+                <div class="card-body">
+                    @if (TempData["ErrorMessage"] != null)
+                    {
+                        <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+                    }
+                    @if (TempData["SuccessMessage"] != null)
+                    {
+                        <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+                    }
+
+                    <form asp-action="Transfer" id="fundTransferForm" method="post">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+                        <div class="mb-3">
+                            <label asp-for="SenderAccount" class="form-label fw-bold">Sender Account Number</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-bank"></i></span>
+                                <input asp-for="SenderAccount" class="form-control" placeholder="Enter sender's account number" required />
+                            </div>
+                            <span asp-validation-for="SenderAccount" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="RecipientAccount" class="form-label fw-bold">Recipient Account Number</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-bank"></i></span>
+                                <input asp-for="RecipientAccount" class="form-control" placeholder="Enter recipient's account number" required />
+                            </div>
+                            <span asp-validation-for="RecipientAccount" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Amount" class="form-label fw-bold">Transfer Amount</label>
+                            <input asp-for="Amount" class="form-control" type="number" min="1" max="1000000" placeholder="Enter amount" required />
+                            <span asp-validation-for="Amount" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="TransferType" class="form-label fw-bold">Transfer Type</label>
+                            <select asp-for="TransferType" class="form-select" required>
+                                <option value="">-- Select Transfer Type --</option>
+                                <option value="NEFT">NEFT</option>
+                                <option value="RTGS">RTGS</option>
+                                <option value="IMPS">IMPS</option>
+                            </select>
+                            <span asp-validation-for="TransferType" class="text-danger"></span>
+                        </div>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button type="submit" class="btn btn-success me-md-2"><i class="bi bi-send"></i> Transfer</button>
+                            <a asp-action="Index" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> Back to List</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
