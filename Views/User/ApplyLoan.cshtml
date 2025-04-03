@@ -1,0 +1,96 @@
+﻿@model Banking_Management_System_Major_Project.Models.UserModel.LoanApplicationViewModel;
+@{
+    ViewData["Title"] = "Loan Application";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg border-0 rounded-3">
+                <div class="card-header bg-primary text-white text-center">
+                    <h4 class="mb-0">Apply for a Loan</h4>
+                </div>
+                <div class="card-body">
+                    @if (TempData["ErrorMessage"] != null)
+                    {
+                        <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+                    }
+                    @if (TempData["SuccessMessage"] != null)
+                    {
+                        <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+                    }
+
+                    <form asp-action="ApplyLoan" method="post">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+                        <div class="mb-3">
+                            <label asp-for="FullName" class="form-label fw-bold">Full Name</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-person"></i></span>
+                                <input asp-for="FullName" class="form-control" placeholder="Enter your full name" required />
+                            </div>
+                            <span asp-validation-for="FullName" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="AccountNumber" class="form-label fw-bold">Account Number</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-bank"></i></span>
+                                <input asp-for="AccountNumber" class="form-control" placeholder="Enter 10-digit account number" required />
+                            </div>
+                            <span asp-validation-for="AccountNumber" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="LoanType" class="form-label fw-bold">Loan Type</label>
+                            <select asp-for="LoanType" class="form-select" required>
+                                <option value="">-- Select Loan Type --</option>
+                                <option value="Home Loan">Home Loan</option>
+                                <option value="Car Loan">Car Loan</option>
+                                <option value="Personal Loan">Personal Loan</option>
+                                <option value="Education Loan">Education Loan</option>
+                            </select>
+                            <span asp-validation-for="LoanType" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="LoanAmount" class="form-label fw-bold">Loan Amount</label>
+                            <input asp-for="LoanAmount" class="form-control" type="number" min="1000" max="1000000" placeholder="Enter loan amount" required />
+                            <span asp-validation-for="LoanAmount" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="MonthlyIncome" class="form-label fw-bold">Monthly Income</label>
+                            <input asp-for="MonthlyIncome" class="form-control" type="number" min="1000" placeholder="Enter monthly income" required />
+                            <span asp-validation-for="MonthlyIncome" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="EmploymentType" class="form-label fw-bold">Employment Type</label>
+                            <select asp-for="EmploymentType" class="form-select" required>
+                                <option value="">-- Select Employment Type --</option>
+                                <option value="Salaried">Salaried</option>
+                                <option value="Self-Employed">Self-Employed</option>
+                                <option value="Business Owner">Business Owner</option>
+                                <option value="Student">Student</option>
+                            </select>
+                            <span asp-validation-for="EmploymentType" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="LoanTerm" class="form-label fw-bold">Loan Term (Years)</label>
+                            <input asp-for="LoanTerm" class="form-control" type="number" min="1" max="30" placeholder="Enter loan term in years" required />
+                            <span asp-validation-for="LoanTerm" class="text-danger"></span>
+                        </div>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button type="submit" class="btn btn-success me-md-2"><i class="bi bi-check-circle"></i> Apply</button>
+                            <a asp-action="Index" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> Back to Home</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

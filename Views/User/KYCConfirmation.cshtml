@@ -1,0 +1,75 @@
+﻿@model Banking_Management_System_Major_Project.Models.UserModel.KYCViewModel;
+@{
+    ViewData["Title"] = "KYC Verification";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg border-0 rounded-3">
+                <div class="card-header bg-primary text-white text-center">
+                    <h4 class="mb-0">KYC Verification Form</h4>
+                </div>
+                <div class="card-body">
+                    @if (TempData["ErrorMessage"] != null)
+                    {
+                        <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+                    }
+                    @if (TempData["SuccessMessage"] != null)
+                    {
+                        <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+                    }
+
+                    <form asp-action="SubmitKYC" method="post" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+                        <div class="mb-3">
+                            <label asp-for="FullName" class="form-label fw-bold">Full Name</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-person"></i></span>
+                                <input asp-for="FullName" class="form-control" placeholder="Enter your full name" required />
+                            </div>
+                            <span asp-validation-for="FullName" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="AadharNumber" class="form-label fw-bold">Aadhar Number</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-credit-card"></i></span>
+                                <input asp-for="AadharNumber" class="form-control" placeholder="Enter 12-digit Aadhar number" required />
+                            </div>
+                            <span asp-validation-for="AadharNumber" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="PANNumber" class="form-label fw-bold">PAN Number</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-card-list"></i></span>
+                                <input asp-for="PANNumber" class="form-control" placeholder="Enter PAN number" required />
+                            </div>
+                            <span asp-validation-for="PANNumber" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="AddressProof" class="form-label fw-bold">Address Proof (PDF)</label>
+                            <input asp-for="AddressProof" type="file" class="form-control" accept="application/pdf" required />
+                            <span asp-validation-for="AddressProof" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="IDProof" class="form-label fw-bold">ID Proof (PDF)</label>
+                            <input asp-for="IDProof" type="file" class="form-control" accept="application/pdf" required />
+                            <span asp-validation-for="IDProof" class="text-danger"></span>
+                        </div>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button type="submit" class="btn btn-success me-md-2"><i class="bi bi-check-circle"></i> Submit KYC</button>
+                            <a asp-action="Index" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> Back to Home</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
