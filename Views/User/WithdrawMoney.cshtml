@@ -1,0 +1,58 @@
+﻿@model Banking_Management_System_Major_Project.Models.UserModel.WithdrawMoneyViewModel
+@{
+    ViewData["Title"] = "Withdraw Money";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<div class="container py-lg-4">
+    <div class="row justify-content-center">
+        <div class="col-sm-6">
+            <div class="card shadow-lg border-0 rounded-3">
+                <div class="card-header bg-primary text-white text-center">
+                    <h4 class="mb-0">Withdraw Money</h4>
+                </div>
+                <div class="card-body">
+                    @if (TempData["ErrorMessage"] != null)
+                    {
+                        <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+                    }
+                    @if (TempData["SuccessMessage"] != null)
+                    {
+                        <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+                    }
+
+                    <form asp-action="Withdraw" id="withdrawForm" method="post">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+                        <div class="mb-3">
+                            <label asp-for="AccountNumber" class="form-label fw-bold">Account Number</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-bank"></i></span>
+                                <input asp-for="AccountNumber" class="form-control" placeholder="Enter your account number" required />
+                            </div>
+                            <span asp-validation-for="AccountNumber" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Amount" class="form-label fw-bold">Withdrawal Amount</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-cash-stack"></i></span>
+                                <input asp-for="Amount" class="form-control" type="number" min="10" max="50000" placeholder="Enter withdrawal amount" required />
+                            </div>
+                            <span asp-validation-for="Amount" class="text-danger"></span>
+                        </div>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button type="submit" class="btn btn-success me-md-2"><i class="bi bi-check-circle"></i> Withdraw</button>
+                            <a asp-action="Index" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> Back to Dashboard</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

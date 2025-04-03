@@ -1,6 +1,6 @@
-﻿@model Banking_Management_System_Major_Project.Models.UserModel.ApplyCardViewModel;
+﻿@model Banking_Management_System_Major_Project.Models.UserModel.ApplyCardViewModel
 @{
-    ViewData["Title"] = "ApplyCard";
+    ViewData["Title"] = "Apply for a Credit Card";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
@@ -12,23 +12,20 @@
                     <h4 class="mb-0">Apply for a Credit Card</h4>
                 </div>
                 <div class="card-body">
-                    @if (TempData["ErrorMessage"] != null)
-                    {
-                        <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
-                    }
+
                     @if (TempData["SuccessMessage"] != null)
                     {
                         <div class="alert alert-success">@TempData["SuccessMessage"]</div>
                     }
-                    
-                    <form asp-action="Create" id="applyCardForm" method="post">
+
+                    <form asp-action="ApplyCard" method="post" id="applyCardForm">
                         <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
 
                         <div class="mb-3">
                             <label asp-for="FullName" class="form-label fw-bold">Full Name</label>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="bi bi-person"></i></span>
-                                <input asp-for="FullName" class="form-control" placeholder="Enter your full name" required />
+                                <input asp-for="FullName" class="form-control" placeholder="Enter your full name" />
                             </div>
                             <span asp-validation-for="FullName" class="text-danger"></span>
                         </div>
@@ -37,14 +34,14 @@
                             <label asp-for="AccountNumber" class="form-label fw-bold">Account Number</label>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="bi bi-bank"></i></span>
-                                <input asp-for="AccountNumber" class="form-control" placeholder="Enter your account number" required />
+                                <input asp-for="AccountNumber" class="form-control" placeholder="Enter your account number" />
                             </div>
                             <span asp-validation-for="AccountNumber" class="text-danger"></span>
                         </div>
 
                         <div class="mb-3">
                             <label asp-for="CardType" class="form-label fw-bold">Card Type</label>
-                            <select asp-for="CardType" class="form-select" required>
+                            <select asp-for="CardType" class="form-select">
                                 <option value="">-- Select Card Type --</option>
                                 <option value="Visa">Visa</option>
                                 <option value="MasterCard">MasterCard</option>
@@ -56,7 +53,7 @@
 
                         <div class="mb-3">
                             <label asp-for="CardVariant" class="form-label fw-bold">Card Variant</label>
-                            <select asp-for="CardVariant" class="form-select" required>
+                            <select asp-for="CardVariant" class="form-select">
                                 <option value="">-- Select Card Variant --</option>
                                 <option value="Standard">Standard</option>
                                 <option value="Gold">Gold</option>
@@ -69,7 +66,7 @@
 
                         <div class="mb-3">
                             <label asp-for="CreditLimit" class="form-label fw-bold">Credit Limit</label>
-                            <input asp-for="CreditLimit" class="form-control" type="number" min="5000" max="500000" placeholder="Enter credit limit" required />
+                            <input asp-for="CreditLimit" class="form-control" type="number" min="5000" max="500000" placeholder="Enter credit limit" />
                             <span asp-validation-for="CreditLimit" class="text-danger"></span>
                         </div>
 
@@ -78,6 +75,7 @@
                             <a asp-action="Index" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> Back to List</a>
                         </div>
                     </form>
+
                 </div>
             </div>
         </div>
@@ -86,4 +84,38 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        $(document).ready(function () {
+            $("#applyCardForm").validate({
+                rules: {
+                    FullName: {
+                        maxlength: 100
+                    },
+                    AccountNumber: {
+                        pattern: "^[0-9]{10,12}$"
+                    },
+                    CreditLimit: {
+                        range: [5000, 500000]
+                    }
+                },
+                messages: {
+                    FullName: {
+                        maxlength: "Full Name cannot exceed 100 characters."
+                    },
+                    AccountNumber: {
+                        pattern: "Account number must be 10-12 digits."
+                    },
+                    CreditLimit: {
+                        range: "Credit limit must be between 5,000 and 500,000."
+                    }
+                },
+                errorClass: "text-danger",
+                validClass: "text-success",
+                errorPlacement: function (error, element) {
+                    error.appendTo(element.parent());
+                }
+            });
+        });
+    </script>
 }
