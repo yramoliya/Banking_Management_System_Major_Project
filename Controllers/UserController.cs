@@ -1,32 +1,30 @@
 ﻿using Banking_Management_System_Major_Project.Models.UserModel;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 
 namespace Banking_Management_System_Major_Project.Controllers
 {
     public class UserController : Controller
     {
+        // Validate session before accessing user dashboard
         public IActionResult Index()
         {
-            if (HttpContext.Session.GetString("UserRole") != "User")
-            {
-                return RedirectToAction("Login", "Bank"); // Restrict access if not user
-            }
+            if (!IsUserLoggedIn()) return RedirectToAction("Login", "Bank");
+
+            // Fetch User Name from Session
+            ViewBag.UserFirstName = HttpContext.Session.GetString("UserFirstName");
+
             return View();
         }
-        public IActionResult ApplyCard()
-        {
-            return View();
-        }
-        [HttpGet]
-        public IActionResult ShowBalance()
-        {
-            return View();
-        }
+
+        public IActionResult ApplyCard() => IsUserLoggedIn() ? View() : RedirectToLogin();
+        public IActionResult ShowBalance() => IsUserLoggedIn() ? View() : RedirectToLogin();
+
         [HttpPost]
         public IActionResult ShowBalance(BalanceViewModel model)
         {
+            if (!IsUserLoggedIn()) return RedirectToLogin();
+
             if (ModelState.IsValid)
             {
                 // Mocking balance retrieval
@@ -35,37 +33,38 @@ namespace Banking_Management_System_Major_Project.Controllers
             }
             return View(model);
         }
-        public IActionResult Profile()
-        {
-            return View();
-        }
-        public IActionResult ApplyLoan()
-        {
-            return View();
-        }
-        public IActionResult KYCConfirmation()
-        {
-            return View();
-        }
-        public IActionResult FundTransfer()
-        {
-            return View();
-        }
-        public IActionResult WithdrawMoney()
-        {
-            return View();
-        }
 
+        public IActionResult Profile() => IsUserLoggedIn() ? View() : RedirectToLogin();
+        public IActionResult ApplyLoan() => IsUserLoggedIn() ? View() : RedirectToLogin();
+        public IActionResult KYCConfirmation() => IsUserLoggedIn() ? View() : RedirectToLogin();
+        public IActionResult FundTransfer() => IsUserLoggedIn() ? View() : RedirectToLogin();
+        public IActionResult WithdrawMoney() => IsUserLoggedIn() ? View() : RedirectToLogin();
+
+        // Logout function with session clearing
         public IActionResult Logout()
         {
+            if (!IsUserLoggedIn()) return RedirectToLogin();
             return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> LogoutConfirmed()
         {
-            HttpContext.Session.Clear();
+            HttpContext.Session.Clear(); // Clear session properly
+            TempData["LogoutMessage"] = "You have been logged out successfully!";
             return RedirectToAction("Index", "Home");
+        }
+
+        // Helper method to check if user session exists
+        private bool IsUserLoggedIn()
+        {
+            return HttpContext.Session.GetString("UserRole") == "User";
+        }
+
+        // Redirect helper function
+        private IActionResult RedirectToLogin()
+        {
+            return RedirectToAction("Login", "Bank");
         }
     }
 }
