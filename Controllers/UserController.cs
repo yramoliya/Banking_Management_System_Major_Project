@@ -17,8 +17,22 @@ namespace Banking_Management_System_Major_Project.Controllers
             return View();
         }
 
-        public IActionResult ApplyCard() => IsUserLoggedIn() ? View() : RedirectToLogin();
-        public IActionResult ShowBalance() => IsUserLoggedIn() ? View() : RedirectToLogin();
+        public IActionResult ApplyCard() //=> IsUserLoggedIn() ? View() : RedirectToLogin();
+        {
+            if (HttpContext.Session.GetString("UserRole") != "User")
+            {
+                return RedirectToAction("Login", "Bank"); // Restrict access if not admin
+            }
+            return View();
+        }
+        public IActionResult ShowBalance() //=> IsUserLoggedIn() ? View() : RedirectToLogin();
+        {
+            if (HttpContext.Session.GetString("UserRole") != "User")
+            {
+                return RedirectToAction("Login", "Bank"); // Restrict access if not admin
+            }
+            return View();
+        }
 
         [HttpPost]
         public IActionResult ShowBalance(BalanceViewModel model)
@@ -34,11 +48,46 @@ namespace Banking_Management_System_Major_Project.Controllers
             return View(model);
         }
 
-        public IActionResult Profile() => IsUserLoggedIn() ? View() : RedirectToLogin();
-        public IActionResult ApplyLoan() => IsUserLoggedIn() ? View() : RedirectToLogin();
-        public IActionResult KYCConfirmation() => IsUserLoggedIn() ? View() : RedirectToLogin();
-        public IActionResult FundTransfer() => IsUserLoggedIn() ? View() : RedirectToLogin();
-        public IActionResult WithdrawMoney() => IsUserLoggedIn() ? View() : RedirectToLogin();
+        public IActionResult Profile() //=> IsUserLoggedIn() ? View() : RedirectToLogin();
+        {
+            if (HttpContext.Session.GetString("UserRole") != "User")
+            {
+                return RedirectToAction("Login", "Bank"); // Restrict access if not admin
+            }
+            return View();
+        }
+        public IActionResult ApplyLoan() //=> IsUserLoggedIn() ? View() : RedirectToLogin();
+        {
+            if (HttpContext.Session.GetString("UserRole") != "User")
+            {
+                return RedirectToAction("Login", "Bank"); // Restrict access if not admin
+            }
+            return View();
+        }
+        public IActionResult KYCConfirmation() //=> IsUserLoggedIn() ? View() : RedirectToLogin();
+        {
+            if (HttpContext.Session.GetString("UserRole") != "User")
+            {
+                return RedirectToAction("Login", "Bank"); // Restrict access if not admin
+            }
+            return View();
+        }
+        public IActionResult FundTransfer() //=> IsUserLoggedIn() ? View() : RedirectToLogin();
+        {
+            if (HttpContext.Session.GetString("UserRole") != "User")
+            {
+                return RedirectToAction("Login", "Bank"); // Restrict access if not admin
+            }
+            return View();
+        }
+        public IActionResult WithdrawMoney() //=> IsUserLoggedIn() ? View() : RedirectToLogin();
+        {
+            if (HttpContext.Session.GetString("UserRole") != "User")
+            {
+                return RedirectToAction("Login", "Bank"); // Restrict access if not admin
+            }
+            return View();
+        }
 
         // Logout function with session clearing
         public IActionResult Logout()

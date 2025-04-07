@@ -19,7 +19,7 @@ namespace Banking_Management_System_Major_Project.Models
             userId = 0;
             role = "";
             FirstName = "";
-            string query = "SELECT UserId,FirstName, Role from Register WHERE Email = @Email AND Password = @Password";
+            string query = "SELECT User_Id,Fname, Role from UserRegistrations WHERE Email = @Email AND Password = @Password";
             SqlCommand cmd = new SqlCommand(query, con);
             cmd.Parameters.AddWithValue("@Email", email);
             cmd.Parameters.AddWithValue("@Password", password);
@@ -27,9 +27,9 @@ namespace Banking_Management_System_Major_Project.Models
             SqlDataReader reader = cmd.ExecuteReader();
             if (reader.Read())
             {
-                userId = (int)reader["UserId"];
+                userId = (int)reader["User_Id"];
                 role = reader["Role"].ToString(); // Get role from DB
-                FirstName = reader["FirstName"].ToString();
+                FirstName = reader["Fname"].ToString();
                 return true;
             }
             return false;
