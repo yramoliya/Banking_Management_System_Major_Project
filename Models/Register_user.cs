@@ -81,8 +81,8 @@ namespace Banking_Management_System_Major_Project.Models
         {
             try
             {
-                string senderEmail = "#"; // ✅ Use your real domain-based email here (not free Gmail if possible)
-                string senderPassword = "#"; // Use App Password or SMTP credentials
+                string senderEmail = "parthtank2231@gmail.com"; // ✅ Use your real domain-based email here (not free Gmail if possible)
+                string senderPassword = "vqys xoon mbam mbkj"; // Use App Password or SMTP credentials
                 string subject = "✅ Welcome to Banking System - Registration Successful";
                 string body = $@"
         <html>

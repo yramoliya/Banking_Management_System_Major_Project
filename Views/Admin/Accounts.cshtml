@@ -2,47 +2,23 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <h2 class="mt-4">🏦 Manage Accounts</h2>
-<table class="table table-bordered">
-    <tr>
-        <th>Account Number</th>
-        <th>Type</th>
-        <th>Balance</th>
-        <th>Status</th>
-        <th>Actions</th>
-    </tr>
-    <tr>
-        <td>123456789</td>
-        <td>Savings</td>
-        <td>$5,000</td>
-        <td>Approved</td>
-        <td><a href="#" class="btn btn-info btn-sm">Details</a></td>
-    </tr>
-    <tr>
-        <td>123456789</td>
-        <td>Savings</td>
-        <td>$5,000</td>
-        <td>Approved</td>
-        <td><a href="#" class="btn btn-info btn-sm">Details</a></td>
-    </tr>
-    <tr>
-        <td>123456789</td>
-        <td>Savings</td>
-        <td>$5,000</td>
-        <td>Approved</td>
-        <td><a href="#" class="btn btn-info btn-sm">Details</a></td>
-    </tr>
-    <tr>
-        <td>123456789</td>
-        <td>Savings</td>
-        <td>$5,000</td>
-        <td>Approved</td>
-        <td><a href="#" class="btn btn-info btn-sm">Details</a></td>
-    </tr>
-    <tr>
-        <td>123456789</td>
-        <td>Savings</td>
-        <td>$5,000</td>
-        <td>Approved</td>
-        <td><a href="#" class="btn btn-info btn-sm">Details</a></td>
-    </tr>
+<a href="/Admin/Add_Accounts/" class="btn btn-primary">Add New User</a>
+<br />
+<br />
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Account ID</th>
+            <th>User ID</th>
+            <th>User Name</th>
+            <th>Account Type</th>
+            <th>Balance</th>
+            <th>Aadhar Number</th>
+            <th>PAN Number</th>
+            <th>Account Number</th>
+            <th>Status</th>
+            <th>Action</th>
+            <th>Details</th>
+        </tr>
+    </thead>
 </table>

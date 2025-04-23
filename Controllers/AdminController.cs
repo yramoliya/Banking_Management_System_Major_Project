@@ -64,8 +64,71 @@ namespace Banking_Management_System_Major_Project.Controllers
             return View(ureg);
         }
 
+        [HttpGet]
+        public IActionResult EditUser(string Id)
+        {
+            UserRegistration Urg = Ureg.getData(Id);
+            return View(Urg);
+        }
+
+        [HttpPost]
+        public IActionResult EditUser(UserRegistration ureg)
+        {
+            if (ModelState.IsValid)
+            {
+                UserRegistration reg = new UserRegistration();
+                string message;
+                bool isInserted = reg.Update(ureg, out message);
+                if (isInserted)
+                {
+                    TempData["Message"] = message;
+                    return RedirectToAction("Users", "Admin");
+                }
+                else
+                {
+                    TempData["Error"] = message;
+                }
+            }
+            return View(ureg);
+        }
+        [HttpGet]
+        public IActionResult DeleteUser(string Id)
+        {
+            UserRegistration Urg = Ureg.getData(Id);
+            return View(Urg);
+        }
+        [HttpPost]
+        public IActionResult DeleteUser(UserRegistration ureg)
+        {
+            if (ModelState.IsValid)
+            {
+                UserRegistration reg = new UserRegistration();
+                string message;
+                bool isInserted = reg.Delete(ureg, out message);
+                if (isInserted)
+                {
+                    TempData["Message"] = message;
+                    return RedirectToAction("Users", "Admin");
+                }
+                else
+                {
+                    TempData["Error"] = message;
+                }
+            }
+            return View(ureg);
+        }
         // Manage Accounts
         public IActionResult Accounts()
+        {
+            if (HttpContext.Session.GetString("UserRole") != "Admin")
+            {
+                return RedirectToAction("Login", "Bank"); // Restrict access if not admin
+            }
+            return View();
+        }
+
+        //Add Account From Admin
+        public IActionResult Add_Accounts()
         {
             if (HttpContext.Session.GetString("UserRole") != "Admin")
             {

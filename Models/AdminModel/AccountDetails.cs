@@ -5,6 +5,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Banking_Management_System_Major_Project.Models.AdminModel
 {
+    public enum UserStatus
+    {
+        Active,
+        Inactive,
+        Suspended
+    }
+
     public class AccountDetails
     {
         [Key]
@@ -31,6 +38,9 @@ namespace Banking_Management_System_Major_Project.Models.AdminModel
 
         [Required]
         public string AccountNumber { get; private set; } // Auto-generated Account Number
+
+        [Required]
+        public UserStatus Status { get; set; }
 
         // Navigation Properties
         public virtual UserRegistration User { get; set; }

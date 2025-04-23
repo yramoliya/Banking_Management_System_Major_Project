@@ -1,51 +1,62 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Register</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
 <!-- Hero Section -->
+
 <!-- Feature Highlights Section -->
 <section class="container my-5">
     <div class="text-center">
         <h2 class="text-dark mb-4">Why Choose SecureBank?</h2>
         <p class="lead text-muted">Reliable, secure, and customer-focused banking services.</p>
     </div>
-    <div class="row g-4">
+    <div class="row text-center">
         <div class="col-md-4">
-            <div class="card h-100 text-center shadow-sm p-4">
+            <div class="card shadow-sm p-4 service-card shadow">
                 <i class="fas fa-lock fa-3x text-primary mb-3"></i>
-                <h5 class="fw-bold">Secure Transactions</h5>
-                <p class="text-muted">Advanced encryption to protect your financial data.</p>
+                <h5>Secure Transactions</h5>
+                <p>Advanced encryption to protect your financial data.</p>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="card h-100 text-center shadow-sm p-4">
+            <div class="card shadow-sm p-4 service-card shadow">
                 <i class="fas fa-user-friends fa-3x text-success mb-3"></i>
-                <h5 class="fw-bold">24/7 Customer Support</h5>
-                <p class="text-muted">We're here to assist you anytime, anywhere.</p>
+                <h5>24/7 Customer Support</h5>
+                <p>We're here to assist you anytime, anywhere for your Support.</p>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="card h-100 text-center shadow-sm p-4">
+            <div class="card shadow-sm p-4 service-card shadow">
                 <i class="fas fa-chart-line fa-3x text-warning mb-3"></i>
-                <h5 class="fw-bold">Smart Investments</h5>
-                <p class="text-muted">Grow your wealth with our expert financial guidance.</p>
+                <h5>Smart Investments</h5>
+                <p>Grow your wealth with our expert financial guidance.</p>
             </div>
         </div>
     </div>
 </section>
 
+
 <!-- Banking Services Section -->
 <div class="container mt-5">
     <div class="text-center">
         <h2 class="mb-3 text-dark">Our Banking Services</h2>
+        @* <p class="lead text-muted">Explore the best financial solutions tailored for you.</p> *@
     </div>
-    <div class="row g-2">
+    <div class="row g-5">
         <div class="col-md-3">
             <div class="card service-card shadow">
                 <div class="card-body text-center">
                     <h5 class="card-title">Loan Services</h5>
                     <p class="card-text">Get quick loans with low-interest rates.</p>
-                    <a href="@Url.Action("LoanService","Bank")" class="btn btn-success">Apply Now</a>
+                    <a href="@Url.Action("LoanService","Bank")" class="btn btn-success">Apply Now</a> <!--here to add the link url.Action//(Acttion name , controller name )-->
                 </div>
             </div>
         </div>
@@ -68,7 +79,7 @@
             </div>
         </div>
         <div class="col-md-3">
-            <div class="card service-card shadow">
+                <div class="card service-card shadow">
                 <div class="card-body text-center">
                     <h5 class="card-title">Investment Plans</h5>
                     <p class="card-text">Grow your wealth with expert plans.</p>
@@ -110,6 +121,7 @@
     </div>
 </section>
 
+
 <!-- Customer Testimonials -->
 <div class="container mt-5">
     <div class="text-center">
@@ -142,7 +154,6 @@
         </div>
     </div>
 </div>
-
 <!-- FAQ Section -->
 <div class="container mt-5">
     <div class="text-center">
@@ -176,16 +187,25 @@
     </div>
 </div>
 
-<!-- Footer -->
+
+<!-- Footer
+<footer class="footer-section text-white text-center py-4 mt-5">
+    <p>&copy; 2025 SecureBank | All Rights Reserved</p>
+    <p>Contact: support@securebank.com | Phone: 1-800-123-4567</p>
+</footer>
+ -->
 <footer class="footer-section bg-dark text-white text-center py-4 mt-5">
     <div class="container">
         <div class="row">
+            <!-- Company Information -->
             <div class="col-md-4 text-md-start mb-3">
                 <h5>Bank Management System</h5>
                 <p>&copy; 2025 BMS | All Rights Reserved</p>
                 <p>Contact: <a href="mailto:support@securebank.com" class="text-light">support@bms.com</a></p>
                 <p>Phone: <a href="tel:18001234567" class="text-light">1-800-123-4567</a></p>
             </div>
+
+            <!-- Company Links -->
             <div class="col-md-4 mb-3">
                 <h5>BMS</h5>
                 <ul class="list-unstyled">
@@ -195,6 +215,8 @@
                     <li><a href="@Url.Action("TermsCondition", "Bank")" class="text-light">Terms & Conditions</a></li>
                 </ul>
             </div>
+
+            <!-- Newsletter Subscription -->
             <div class="col-md-4 text-md-start">
                 <h5>Get the Latest News</h5>
                 <p>Stay updated with our latest blogs, events, and offers.</p>
@@ -204,22 +226,64 @@
     </div>
 </footer>
 
-<!-- Styles -->
+<!-- Bootstrap 5 & Custom Styles -->
 <style>
+    /* Hero Section */
     .hero-section {
         background: linear-gradient(to right, #4facfe, #00f2fe);
     }
 
+    /* Account Card */
     .card.bg-primary {
         border-radius: 10px;
     }
 
+    /* Service Cards */
     .service-card {
         border-radius: 10px;
         transition: 0.3s;
+    }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Test*/
+        .testimonial-card {
+            border: none;
+            border-radius: 12px;
+        background: linear-gradient(135deg, #4facfe, #00f2fe);
+            color: #fff;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            }
+
+        .testimonial-text {
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+
+        .text-light {
+            opacity: 0.8;
+        }
+
+    /* Footer */
+    .footer-section {
+        background: #343a40;
+    }
+
+    /* Interactive Service Grid */
+    .service-card {
         background: white;
         padding: 30px;
+        border-radius: 15px;
         box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease-in-out;
         cursor: pointer;
         text-align: center;
     }
@@ -240,6 +304,7 @@
 
     .service-card:hover .service-icon {
         color: black;
+        
     }
 
     .service-card h5 {
@@ -250,31 +315,14 @@
     .service-card p {
         font-size: 1rem;
         color: #555;
+
     }
 
-    .testimonial-card {
-        border: none;
-        border-radius: 12px;
-        background: linear-gradient(135deg, #4facfe, #00f2fe);
-        color: #fff;
-        transition: transform 0.3s ease-in-out, box-shadow 0.3s;
-    }
-
-        .testimonial-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-
-    .testimonial-text {
-        font-size: 1.2rem;
-        font-style: italic;
-    }
-
-    .text-light {
-        opacity: 0.8;
-    }
-
-    .footer-section {
-        background: #343a40;
-    }
 </style>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+    <!-- Required Scripts -->
+</body>
+</html>

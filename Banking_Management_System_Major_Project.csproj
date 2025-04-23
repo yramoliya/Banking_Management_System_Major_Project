@@ -15,4 +15,8 @@
     <None Include="wwwroot\css\image\The-Top-5-Automation-Challenges.jpg" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Database\" />
+  </ItemGroup>
+
 </Project>

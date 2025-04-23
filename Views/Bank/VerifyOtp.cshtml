@@ -1,0 +1,54 @@
+﻿@model Banking_Management_System_Major_Project.Models.ForgotPasswordModel
+@{
+    ViewData["Title"] = "Verify OTP";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Varify OTP</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <section class="min-vh-100 d-flex align-items-center justify-content-center bg-white text-white">
+        <div class="card shadow-lg border-0 rounded-4 bg-gradient bg-body-tertiary" style="backdrop-filter: blur(20px); max-width: 600px; width: 100%;">
+            <div class="card-body p-5">
+                <h2 class="fw-bold text-center mb-4 text-primary">🔐 Enter OTP</h2>
+                <p class="text-center text-muted mb-4">Enter your OTP to Varification and Update Password</p>
+                <form asp-action="VerifyOtp" method="post">
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+                    <!-- Email input -->
+                    <div class="form-outline mb-4">
+                        <label asp-for="OTP" class="form-label fw-semibold">OTPs</label>
+                        <input asp-for="OTP" class="form-control form-control-lg rounded-pill" placeholder="123456" />
+                        <span asp-validation-for="OTP" class="text-danger small"></span>
+                    </div>
+                    @if (ViewBag.Error != null)
+                    {
+                        <div class="alert alert-danger">@ViewBag.Error</div>
+                    }
+                    <!-- Submit button -->
+                    <div class="d-grid mb-3">
+                        <button type="submit" class="btn btn-primary btn-lg rounded-pill shadow-sm">
+                            📤 Varify OTP
+                        </button>
+                    </div>
+
+                    <!-- Back to login -->
+                    <div class="text-center">
+                        <a href="Login" class="text-decoration-none text-secondary">
+                            ⬅️ Back to Login
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+    <!-- Required Scripts -->
+</body>
+</html>

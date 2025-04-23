@@ -96,6 +96,33 @@ namespace Banking_Management_System_Major_Project.Models.AdminModel
             return lstureg;
 
         }
+
+        public UserRegistration getData(string Id)
+        {
+            UserRegistration emp = new UserRegistration();
+            SqlCommand cmd = new SqlCommand("SELECT * FROM UserRegistrations WHERE User_Id='"+Id+"'", con);
+            con.Open();
+            SqlDataReader dr = cmd.ExecuteReader();
+            if(dr.HasRows)
+            {
+                while(dr.Read())
+                {
+                    emp.User_Id = Convert.ToInt32(dr["User_Id"].ToString());
+                    emp.Fname = dr["Fname"].ToString();
+                    emp.Mname = dr["Mname"].ToString();
+                    emp.Lname = dr["Lname"].ToString();
+                    emp.Email = dr["Email"].ToString();
+                    emp.Gender = (Gender)Enum.Parse(typeof(Gender), dr["Gender"].ToString());
+                    emp.Mobile = dr["Mobile"].ToString();
+                    emp.DateOfBirth = Convert.ToDateTime(dr["DateOfBirth"]);
+                    emp.Password = dr["Password"].ToString();
+                    emp.Role = (Role)Enum.Parse(typeof(Role), dr["Role"].ToString());
+                }
+            }
+            con.Close();
+            return emp;
+        }
+
         public bool Insert(UserRegistration Ureg, out string message)
         {
             message = string.Empty;
@@ -127,7 +154,7 @@ namespace Banking_Management_System_Major_Project.Models.AdminModel
 
                         if (result > 0)
                         {
-                            SendEmail(Ureg.Email, Ureg.Fname);
+                            SendEmail(Ureg.Email, Ureg.Fname, false);
                             message = "Registration successful! Confirmation email sent.";
                             return true;
                         }
@@ -151,24 +178,132 @@ namespace Banking_Management_System_Major_Project.Models.AdminModel
             }
         }
 
-
-        private void SendEmail(string userEmail, string firstName)
+        public bool Update(UserRegistration Ureg, out string message)
         {
             try
             {
-                string senderEmail = "#"; // ✅ Use your real domain-based email here (not free Gmail if possible)
-                string senderPassword = "#"; // Use App Password or SMTP credentials
-                string subject = "✅ Welcome to Banking System - Registration Successful";
-                string body = $@"
-        <html>
-        <body style='font-family: Arial, sans-serif;'>
-            <h2 style='color: #2e6c80;'>Hello {firstName},</h2>
-            <p>Thank you for registering with <strong>Banking System</strong>.</p>
-            <p>Your registration was <strong>successful</strong>. You can now log in to your account.</p>
-            <br/>
-            <p style='color: #555;'>Best Regards,<br/><strong>Banking System Team</strong></p>
-        </body>
-        </html>";
+                message = string.Empty;
+                using (con)
+                {
+                    string query = @"UPDATE UserRegistrations SET Fname=@Fname, Mname=@Mname, Lname=@Lname, Email=@Email, Gender=@Gender, Mobile=@Mobile, DateOfBirth=@DateOfBirth, Password=@Password, Role=@Role WHERE User_Id=@Id";
+
+
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        cmd.Parameters.AddWithValue("@Fname", Ureg.Fname);
+                        cmd.Parameters.AddWithValue("@Mname", Ureg.Mname);
+                        cmd.Parameters.AddWithValue("@Lname", Ureg.Lname);
+                        cmd.Parameters.AddWithValue("@Email", Ureg.Email);
+                        cmd.Parameters.AddWithValue("@Gender", Ureg.Gender.ToString());
+                        cmd.Parameters.AddWithValue("@Mobile", Ureg.Mobile);
+                        cmd.Parameters.AddWithValue("@DateOfBirth", Ureg.DateOfBirth);
+                        cmd.Parameters.AddWithValue("@Password", Ureg.Password); // You may hash this
+                        cmd.Parameters.AddWithValue("@Role", Ureg.Role.ToString());
+                        cmd.Parameters.AddWithValue("@Id", Ureg.User_Id);                        
+
+                        con.Open();
+                        int result = cmd.ExecuteNonQuery();
+                        con.Close();
+
+                        if (result > 0)
+                        {
+                            SendEmail(Ureg.Email, Ureg.Fname, true);
+                            message = "Profile Update successful! Confirmation email sent.";
+                            return true;
+                        }
+                        else
+                        {
+                            message = "Profile Update failed. No rows affected.";
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                message = "SQL Error: " + ex.Message;
+                return false;
+            }
+            catch (Exception ex)
+            {
+                message = "Unexpected Error: " + ex.Message;
+                return false;
+            }
+        }
+        public bool Delete(UserRegistration Ureg, out string message)
+        {
+            try
+            {
+                message = string.Empty;
+                using (con)
+                {
+                    string query = @"DELETE FROM UserRegistrations WHERE User_Id=@Id";
+
+
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    { 
+                        cmd.Parameters.AddWithValue("@Id", Ureg.User_Id);
+
+                        con.Open();
+                        int result = cmd.ExecuteNonQuery();
+                        con.Close();
+
+                        if (result > 0)
+                        {
+                            SendEmail(Ureg.Email, Ureg.Fname, true);
+                            message = "Profile Delete successful! Confirmation email sent.";
+                            return true;
+                        }
+                        else
+                        {
+                            message = "Profile Delete failed. No rows affected.";
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                message = "SQL Error: " + ex.Message;
+                return false;
+            }
+            catch (Exception ex)
+            {
+                message = "Unexpected Error: " + ex.Message;
+                return false;
+            }
+        }
+        private void SendEmail(string userEmail, string firstName, bool isUpdate = false)
+        {
+            try
+            {
+                string senderEmail = "parthtank2231@gmail.com"; // ✅ Use your real domain-based email here (not free Gmail if possible)
+                string senderPassword = "vqys xoon mbam mbkj"; // Use App Password or SMTP credentials
+                string subject = isUpdate
+            ? "🔁 Profile Updated Successfully - Banking System"
+            : "✅ Welcome to Banking System - Registration Successful";
+
+                string body = isUpdate
+                    ? $@"
+                <html>
+                <body style='font-family: Arial, sans-serif;'>
+                    <h2 style='color: #2e6c80;'>Hello {firstName},</h2>
+                    <p>Your <strong>profile has been successfully updated</strong> in the Banking System.</p>
+                    <p>If you did not make this change, please contact support immediately.</p>
+                    <br/>
+                    <p style='color: #555;'>Best Regards,<br/><strong>Banking System Team</strong></p>
+                </body>
+                </html>"
+                    : $@"
+                <html>
+                <body style='font-family: Arial, sans-serif;'>
+                    <h2 style='color: #2e6c80;'>Hello {firstName},</h2>
+                    <p>Thank you for registering with <strong>Banking System</strong>.</p>
+                    <p>Your registration was <strong>successful</strong>. You can now log in to your account.</p>
+                    <br/>
+                    <p style='color: #555;'>Best Regards,<br/><strong>Banking System Team</strong></p>
+                </body>
+                </html>";
 
                 MailMessage mail = new MailMessage();
                 mail.From = new MailAddress(senderEmail, "Banking System Support"); // ✅ Friendly name
