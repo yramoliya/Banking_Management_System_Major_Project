@@ -158,17 +158,21 @@
                                 <li class="nav-item">
                                     <a class="nav-link text-white" asp-controller="Admin" asp-action="Index">⚙️ Admin Dashboard</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" asp-controller="Admin" asp-action="Logout">🚪 Logout</a>
+                                </li>
                             }
                             else
                             {
                                 <li class="nav-item">
                                     <a class="nav-link text-white" asp-controller="User" asp-action="Index">👤 User Dashboard</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" asp-controller="User" asp-action="Logout">🚪 Logout</a>
+                                </li>
                             }
 
-                            <li class="nav-item">
-                                <a class="nav-link text-white" asp-controller="User" asp-action="Logout">🚪 Logout</a>
-                            </li>
+                            
                         }
                     </ul>
                 </div>

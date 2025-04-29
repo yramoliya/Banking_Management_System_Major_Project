@@ -1,24 +1,56 @@
-﻿@{
+﻿@using Banking_Management_System_Major_Project.Models
+@model IEnumerable<Banking_Management_System_Major_Project.Models.AdminModel.AccountDetails>
+@{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <h2 class="mt-4">🏦 Manage Accounts</h2>
-<a href="/Admin/Add_Accounts/" class="btn btn-primary">Add New User</a>
+<a href="/Admin/Add_Accounts/" class="btn btn-primary">Add New Account</a>
 <br />
 <br />
 <table class="table table-bordered table-striped">
     <thead class="table-dark">
         <tr>
             <th>Account ID</th>
-            <th>User ID</th>
-            <th>User Name</th>
-            <th>Account Type</th>
-            <th>Balance</th>
+            <th>First Name</th>
+            <th>Middle Name</th>
+            <th>Last Name</th>
+            <th>DOB</th>
             <th>Aadhar Number</th>
             <th>PAN Number</th>
             <th>Account Number</th>
-            <th>Status</th>
             <th>Action</th>
             <th>Details</th>
         </tr>
     </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var account in Model)
+            {
+                <tr>
+                    <td>@account.AccountId</td>
+                    <td>@account.Firstname</td>
+                    <td>@account.Middlename</td>
+                    <td>@account.Lastname</td>
+                    <td>@account.Dob</td>
+                    <td>@account.AddharNumber</td>
+                    <td>@account.PanNumber</td>
+                    <td>@account.AccountNumber</td>
+                    <td>
+                        <a href="/Admin/Editaccount/@account.AccountId" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="/Admin/Deleteaccount/@account.AccountId" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                    <td>
+                        <a href="/Admin/Passbook/@account.AccountId" class="btn btn-info btn-sm">Get More</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="11" class="text-danger">No accounts found.</td>
+            </tr>
+        }
+    </tbody>
 </table>

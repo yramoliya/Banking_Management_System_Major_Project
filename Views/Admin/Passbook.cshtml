@@ -1,0 +1,39 @@
+﻿@using Banking_Management_System_Major_Project.Models
+@* @model IEnumerable<Banking_Management_System_Major_Project.Models.AdminModel.AccountDetails> *@
+@model Banking_Management_System_Major_Project.Models.AdminModel.AccountDetails
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card mt-5" style="max-width: 800px; margin: auto; padding: 20px; border: 2px solid #007bff; box-shadow: 2px 2px 12px #aaa;">
+    <h2 class="text-center mb-4">🏦 Account Passbook</h2>
+    <div class="text-center mb-4">
+        @* <img src="@Model.PhotoUrl" alt="User Photo" class="img-thumbnail" style="width: 150px; height: 150px; object-fit: cover;" /> *@
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <p><strong>First Name:</strong> @Model.Firstname</p>
+            <p><strong>Middle Name:</strong> @Model.Middlename</p>
+            <p><strong>Last Name:</strong> @Model.Lastname</p>
+            <p><strong>DOB:</strong> @Model.Dob</p>
+            <p><strong>Gender:</strong> @Model.Gender</p>
+            <p><strong>Email:</strong> @Model.Email</p>
+            <p><strong>Mobile:</strong> @Model.MobileNumber</p>
+            <p><strong>Alternate Number:</strong> @Model.AlternateNumber</p>
+        </div>
+        <div class="col-md-6">
+            <p><strong>Account Number:</strong> @Model.AccountNumber</p>
+            <p><strong>Account Type:</strong> @Model.AcType</p>
+            <p><strong>Account Balance:</strong> ₹@Model.AcBalance</p>
+            <p><strong>Address:</strong> @Model.City, @Model.State, @Model.State, @Model.Country - @Model.Pincode</p>
+            <p><strong>PAN Number:</strong> @Model.PanNumber</p>
+            <p><strong>Aadhar Number:</strong> @Model.AddharNumber</p>
+            <p><strong>Occupation:</strong> @Model.Qulification</p>
+        </div>
+    </div>
+ 
+    <div class="text-center mt-4">
+        <a href="/Admin/Accounts" class="btn btn-secondary">🔙 Back to Accounts</a>
+    </div>
+</div>
