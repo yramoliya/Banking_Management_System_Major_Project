@@ -1,0 +1,29 @@
+﻿@using Banking_Management_System_Major_Project.Models
+@model IEnumerable<Banking_Management_System_Major_Project.Models.UserModel.ApplyCardViewModel>
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>All Debit Cards</h2><br />
+<a href="/User/ApplyCard" class="btn btn-primary">Apply for Debit Card</a>
+<br />
+<br />
+<table class="table table-bordered">
+    <tr>
+        <th>Debit Number</th>
+        <th>Account</th>
+        <th>Name</th>
+        <th>Card Type</th>
+        <th>Status</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.DebitNumber</td>
+            <td>@item.AcNumber</td>
+            <td>@item.Firstname @item.Lastname</td>
+            <td>@item.CardType</td>
+            <td>@item.Status</td>
+        </tr>
+    }
+</table>

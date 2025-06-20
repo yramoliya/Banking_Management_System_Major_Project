@@ -1,4 +1,6 @@
-﻿@{
+﻿@using Banking_Management_System_Major_Project.Models
+@model IEnumerable<Banking_Management_System_Major_Project.Models.UserModel.TransactionModel>
+@{
     ViewData["Title"] = "Transactions";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -6,7 +8,6 @@
 <div class="container mt-5">
     <h2 class="text-center mb-4">Transaction History</h2>
 
-    <!-- Search & Filter Section -->
     <div class="row mb-3">
         <div class="col-md-6">
             <input type="text" id="searchInput" class="form-control" placeholder="Search by Name, ID, or Amount...">
@@ -19,54 +20,36 @@
         </div>
     </div>
 
-    <!-- Transaction History Table -->
     <div class="card shadow-lg">
         <div class="card-body">
             <table class="table table-hover" id="transactionTable">
                 <thead class="bg-primary text-white">
                     <tr>
                         <th>Date</th>
-                        <th>Transaction ID</th>
-                        <th>Debitor (Sender)</th>
-                        <th>Creditor (Receiver)</th>
+                        <th>Time</th>
+                        <th>Account Holder</th>
+                        <th>Account Number</th>
                         <th>Amount</th>
                         <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Example Transactions -->
-                    <tr class="table-success">
-                        <td>2025-02-15</td>
-                        <td>#TXN123456</td>
-                        <td>John Doe</td>
-                        <td>Mike Smith</td>
-                        <td>$500.00</td>
-                        <td><span class="badge bg-success">Credit</span></td>
-                    </tr>
-                    <tr class="table-danger">
-                        <td>2025-02-14</td>
-                        <td>#TXN789012</td>
-                        <td>Emily Davis</td>
-                        <td>John Doe</td>
-                        <td>-$200.00</td>
-                        <td><span class="badge bg-danger">Debit</span></td>
-                    </tr>
-                    <tr class="table-success">
-                        <td>2025-02-12</td>
-                        <td>#TXN345678</td>
-                        <td>John Doe</td>
-                        <td>Sarah Wilson</td>
-                        <td>$350.00</td>
-                        <td><span class="badge bg-success">Credit</span></td>
-                    </tr>
-                    <tr class="table-danger">
-                        <td>2025-02-10</td>
-                        <td>#TXN901234</td>
-                        <td>John Doe</td>
-                        <td>Amazon Purchase</td>
-                        <td>-$150.00</td>
-                        <td><span class="badge bg-danger">Debit</span></td>
-                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        var statusColor = item.Trasaction == "Credit" ? "table-success" : "table-danger";
+                        <tr class="@statusColor">
+                            <td>@item.Date</td>
+                            <td>@item.Time</td>
+                            <td>@item.Name</td>
+                            <td>@item.Acnumber</td>
+                            <td>@(item.Trasaction == "Debit" ? "-" : "")₹@item.Amount</td>
+                            <td>
+                                <span class="badge @(item.Trasaction == "Credit" ? "bg-success" : "bg-danger")">
+                                    @item.Trasaction
+                                </span>
+                            </td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </div>

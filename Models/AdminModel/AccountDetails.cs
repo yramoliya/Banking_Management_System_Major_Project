@@ -367,6 +367,68 @@ namespace Banking_Management_System_Major_Project.Models.AdminModel
                 return false;
             }
         }
+        public bool ShowBalance(AccountDetails model, out string message)
+        {
+            message = string.Empty;
+
+            try
+            {
+                using (con)// Replace with your connection string
+                {
+                    string query = "SELECT * FROM AccountDetails WHERE AccountNumber = @AccountNumber";
+
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        cmd.Parameters.AddWithValue("@AccountNumber", model.AccountNumber);
+                        con.Open();
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                model.Firstname = reader["Firstname"].ToString();
+                                model.Middlename = reader["Middlename"].ToString();
+                                model.Lastname = reader["Lastname"].ToString();
+                                model.Dob = Convert.ToDateTime(reader["Dob"]);
+                                model.Gender = Enum.Parse<gender>(reader["Gender"].ToString());
+                                model.MobileNumber = reader["MobileNumber"].ToString();
+                                model.Email = reader["Email"].ToString();
+                                model.AlternateNumber = reader["AlternateNumber"].ToString();
+                                model.Country = reader["Country"].ToString();
+                                model.State = reader["State"].ToString();
+                                model.City = reader["City"].ToString();
+                                model.Pincode = reader["Pincode"].ToString();
+                                model.AcType = Enum.Parse<AccountType>(reader["AcType"].ToString());
+                                model.AccountNumber = reader["AccountNumber"].ToString();
+                                model.Ifsc = reader["Ifsc"].ToString();
+                                model.PanNumber = reader["PanNumber"].ToString();
+                                model.AddharNumber = reader["AddharNumber"].ToString();
+                                model.Qulification = reader["Qulification"].ToString();
+                                model.AcBalance = reader["AcBalance"].ToString();
+
+                                return true; // success
+                            }
+                            else
+                            {
+                                message = "Account not found.";
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                message = "SQL Error: " + ex.Message;
+                return false;
+            }
+            catch (Exception ex)
+            {
+                message = "Unexpected Error: " + ex.Message;
+                return false;
+            }
+        }
+
 
         private void SendEmail(string userEmail, string firstName, bool isUpdate = false)
         {

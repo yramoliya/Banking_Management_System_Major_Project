@@ -1,34 +1,89 @@
-﻿@{
+﻿@using Banking_Management_System_Major_Project.Models
+@model IEnumerable<Banking_Management_System_Major_Project.Models.UserModel.TransactionModel>
+@{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <h2 class="mt-4">💰 Transactions</h2>
-<table class="table table-bordered">
-    <tr>
-        <th>Transaction ID</th>
-        <th>Account Number</th>
-        <th>Amount</th>
-        <th>Type</th>
-        <th>Date</th>
-    </tr>
-    <tr>
-        <td>1001</td>
-        <td>123456789</td>
-        <td>$500</td>
-        <td>Deposit</td>
-        <td>2025-03-09</td>
-    </tr>
-      <tr>
-        <td>1001</td>
-        <td>123456789</td>
-        <td>$500</td>
-        <td>Deposit</td>
-        <td>2025-03-09</td>
-    <tr>
-        <td>1001</td>
-        <td>123456789</td>
-        <td>$500</td>
-        <td>Deposit</td>
-        <td>2025-03-09</td>
-    </tr>
-    </tr>
-</table>
+<a href="/Admin/CreateTransation/" class="btn btn-primary">Make Transactions</a>
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Transaction History</h2>
+
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <input type="text" id="searchInput" class="form-control" placeholder="Search by Name, ID, or Amount...">
+        </div>
+        <div class="col-md-4">
+            <input type="date" id="dateFilter" class="form-control">
+        </div>
+        <div class="col-md-2">
+            <button class="btn btn-primary w-100" onclick="filterTransactions()">Search</button>
+        </div>
+    </div>
+
+    <div class="card shadow-lg">
+        <div class="card-body">
+            <table class="table table-hover" id="transactionTable">
+                <thead class="bg-primary text-white">
+                    <tr>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Account Holder</th>
+                        <th>Account Number</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        var statusColor = item.Trasaction == "Credit" ? "table-success" : "table-danger";
+                        <tr class="@statusColor">
+                            <td>@item.Date</td>
+                            <td>@item.Time</td>
+                            <td>@item.Name</td>
+                            <td>@item.Acnumber</td>
+                            <td>@(item.Trasaction == "Debit" ? "-" : "")₹@item.Amount</td>
+                            <td>
+                                <span class="badge @(item.Trasaction == "Credit" ? "bg-success" : "bg-danger")">
+                                    @item.Trasaction
+                                </span>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript for Search and Filter -->
+<script>
+    function filterTransactions() {
+        let searchInput = document.getElementById("searchInput").value.toLowerCase();
+        let dateFilter = document.getElementById("dateFilter").value;
+        let table = document.getElementById("transactionTable");
+        let rows = table.getElementsByTagName("tr");
+
+        for (let i = 1; i < rows.length; i++) {
+            let cols = rows[i].getElementsByTagName("td");
+            let date = cols[0].textContent;
+            let transactionId = cols[1].textContent.toLowerCase();
+            let debitor = cols[2].textContent.toLowerCase();
+            let creditor = cols[3].textContent.toLowerCase();
+            let amount = cols[4].textContent.toLowerCase();
+
+            let matchesSearch = searchInput === "" ||
+                transactionId.includes(searchInput) ||
+                debitor.includes(searchInput) ||
+                creditor.includes(searchInput) ||
+                amount.includes(searchInput);
+
+            let matchesDate = dateFilter === "" || date === dateFilter;
+
+            rows[i].style.display = matchesSearch && matchesDate ? "" : "none";
+        }
+    }
+</script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>

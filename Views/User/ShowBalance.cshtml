@@ -1,4 +1,5 @@
-﻿@model Banking_Management_System_Major_Project.Models.UserModel.BalanceViewModel;
+﻿@using Banking_Management_System_Major_Project.Models
+@model Banking_Management_System_Major_Project.Models.AdminModel.AccountDetails
 @{
     ViewData["Title"] = "Show Balance";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
@@ -44,11 +45,53 @@
     </div>
 </div>
 
-@if (Model?.Balance != null)
+@if (Model != null)
+{
+
+    <div class="container mt-4 border rounded p-4 shadow-sm bg-light">
+    <h3 class="text-center mb-4">
+        🏦 Passbook for <strong>@Model.Firstname @Model.Lastname</strong>
+    </h3>
+
+    @if (TempData["Message"] != null)
+    {
+        <div class="alert alert-success">@TempData["Message"]</div>
+    }
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger">@TempData["Error"]</div>
+    }
+
+    <div class="row">
+        <div class="col-md-6">
+            <p><strong>First Name:</strong> @Model.Firstname</p>
+            <p><strong>Middle Name:</strong> @Model.Middlename</p>
+            <p><strong>Last Name:</strong> @Model.Lastname</p>
+            <p><strong>DOB:</strong> @Model.Dob</p>
+            <p><strong>Gender:</strong> @Model.Gender</p>
+            <p><strong>Email:</strong> @Model.Email</p>
+            <p><strong>Mobile:</strong> @Model.MobileNumber</p>
+            <p><strong>Alternate Number:</strong> @Model.AlternateNumber</p>
+        </div>
+
+        <div class="col-md-6">
+            <p><strong>Account Number:</strong> @Model.AccountNumber</p>
+            <p><strong>Account Type:</strong> @Model.AcType</p>
+            <p><strong>Account Balance:</strong> ₹@Model.AcBalance</p>
+            <p><strong>Address:</strong> @Model.City, @Model.State, @Model.Country - @Model.Pincode</p>
+            <p><strong>PAN Number:</strong> @Model.PanNumber</p>
+            <p><strong>Aadhar Number:</strong> @Model.AddharNumber</p>
+            <p><strong>Occupation:</strong> @Model.Qulification</p>
+        </div>
+    </div>
+</div>
+}
+@if (Model?.AcBalance != null)
 {
     <div class="container mt-4">
         <div class="alert alert-info text-center">
-            <h3>Your Balance: $@Model.Balance</h3>
+            <h3>Your Balance: $@Model.AcBalance</h3>
         </div>
     </div>
 }

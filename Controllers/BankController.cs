@@ -84,7 +84,53 @@ namespace Banking_Management_System_Major_Project.Controllers
             return View();
         }
 
-        public IActionResult LoanService() => IsUserLoggedIn() ? View() : RedirectToLogin();
+        public IActionResult LoanService()
+        {
+            if (!IsUserLoggedIn()) return RedirectToAction("Login");
+            return View();
+        }
+
+        public IActionResult ApplyLoan()
+        {
+            // Get the logged-in user's email from Session
+            var toEmail = HttpContext.Session.GetString("UserEmail");
+
+            if (string.IsNullOrEmpty(toEmail))
+            {
+                return RedirectToAction("Login", "Account"); // If not logged in, redirect to Login
+            }
+
+            // Prepare the email
+            var fromAddress = new MailAddress("parthtank2231@gmail.com", "BMS");
+            var toAddress = new MailAddress(toEmail);
+            const string fromPassword = "vqys xoon mbam mbkj"; // Be careful with this in real apps
+            const string subject = "Loan Application Confirmation";
+            string body = "Thank you for applying for a loan. Kindly contact the bank for further processing.";
+
+            var smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com", // Correct host
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromAddress.Address, fromPassword),
+                Timeout = 20000,
+            };
+
+            using (var message = new MailMessage(fromAddress, toAddress)
+            {
+                Subject = subject,
+                Body = body,
+            })
+            {
+                smtp.Send(message); // <-- Only if everything above is correct, it will succeed
+            }
+
+            TempData["Message"] = "An email has been sent. Kindly contact the bank.";
+
+            return RedirectToAction("LoanService"); // Go back to LoanService page
+        }
         public IActionResult Transactions() => IsUserLoggedIn() ? View() : RedirectToLogin();
         public IActionResult Fund() => IsUserLoggedIn() ? View() : RedirectToLogin();
         public IActionResult InvestmentPlan() => IsUserLoggedIn() ? View() : RedirectToLogin();
@@ -120,7 +166,7 @@ namespace Banking_Management_System_Major_Project.Controllers
 
             using var smtp = new SmtpClient
             {
-                Host = "smtp.gmail.com",
+                Host = "parthtank2231@gmail.com",
                 Port = 587,
                 EnableSsl = true,
                 Credentials = new NetworkCredential(fromAddress.Address, fromPass)

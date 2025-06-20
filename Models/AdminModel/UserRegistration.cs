@@ -258,6 +258,7 @@ namespace Banking_Management_System_Major_Project.Models.AdminModel
                         {
                             message = "Profile Delete failed. No rows affected.";
                             return false;
+
                         }
                     }
                 }

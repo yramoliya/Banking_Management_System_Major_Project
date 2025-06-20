@@ -2,12 +2,16 @@
 using Microsoft.AspNetCore.Http;
 using Banking_Management_System_Major_Project.Models.AdminModel;
 using System.Reflection;
+using Microsoft.Data.SqlClient;
+using Banking_Management_System_Major_Project.Models.UserModel;
 namespace Banking_Management_System_Major_Project.Controllers
 {
     public class AdminController : Controller
     {
+        private readonly string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=BMS;Integrated Security=True;Connect Timeout=30;Encrypt=False;";
         UserRegistration Ureg = new UserRegistration();
         AccountDetails acc = new AccountDetails();
+        TransactionModel tc = new TransactionModel();
         public IActionResult Index()
         {
             if (HttpContext.Session.GetString("UserRole") != "Admin")
@@ -124,7 +128,37 @@ namespace Banking_Management_System_Major_Project.Controllers
             List<AccountDetails> lst = acc.getData();
             return View(lst);
         }
-
+        public IActionResult Cards()
+        {
+            List<ApplyCardViewModel> list = new();
+            using SqlConnection con = new(connectionString);
+            con.Open();
+            string query = "SELECT * FROM Debit_Card_Apply";
+            using SqlCommand cmd = new(query, con);
+            using SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                list.Add(new ApplyCardViewModel
+                {
+                    DebitNumber = dr["DebitNumber"].ToString(),
+                    FirstNumber = dr["FirstNumber"].ToString(),
+                    SecondNumber = dr["SecondNumber"].ToString(),
+                    ThirdNumber = dr["ThirdNumber"].ToString(),
+                    FourthNumber = dr["FourthNumber"].ToString(),
+                    UniqueNumber = dr["UniqueNumber"].ToString(),
+                    ValidUpto = dr["ValidUpto"].ToString(),
+                    Firstname = dr["Firstname"].ToString(),
+                    Lastname = dr["Lastname"].ToString(),
+                    AcNumber = dr["AcNumber"].ToString(),
+                    CvvNumber = dr["CvvNumber"].ToString(),
+                    Status = dr["Status"].ToString(),
+                    CardType = dr["CardType"].ToString(),
+                    Random_Pin = dr["Random_Pin"].ToString(),
+                    Pin = dr["Pin"].ToString()
+                });
+            }
+            return View(list);
+        }
         public IActionResult Passbook(string Id)
         {
             //acc = new AccountDetails();
@@ -226,7 +260,49 @@ namespace Banking_Management_System_Major_Project.Controllers
             {
                 return RedirectToAction("Login", "Bank"); // Restrict access if not admin
             }
-            return View();
+            var data = tc.GetAll();
+            return View(data);
+        }
+        public IActionResult CreateTransation()
+        {
+            if (HttpContext.Session.GetString("UserRole") != "Admin")
+            {
+                return RedirectToAction("Login", "Bank"); // Restrict access if not admin
+            }
+            var model1 = new TransactionModel(); // This will auto-generate values
+            return View(model1);
+        }
+        [HttpPost]
+        public IActionResult CreateTransation(TransactionModel model)
+        {
+            string result = model.AddTransaction(model);
+            if (result == "Success")
+                return RedirectToAction("Index");
+            ViewBag.Error = "Transaction Failed";
+            return View(model);
+        }
+
+        // Edit GET
+        public IActionResult EditTransation(string acNumber)
+        {
+            var item = tc.GetAll().Find(x => x.Acnumber == acNumber);
+            return View(item);
+        }
+
+        // Edit POST
+        [HttpPost]
+        public IActionResult EditTransation(TransactionModel model)
+        {
+            string result = model.UpdateTransaction(model);
+            return RedirectToAction("Index");
+        }
+
+        // Delete
+        public IActionResult DeleteTransation(string acNumber)
+        {
+            TransactionModel model = new TransactionModel();
+            model.DeleteTransaction(acNumber);
+            return RedirectToAction("Index");
         }
 
         // Loan Approvals
