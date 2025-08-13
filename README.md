@@ -46,12 +46,12 @@ Welcome to the **Banking Management System**, a secure and efficient platform bu
 ## 🚀 Getting Started
 1️⃣ Clone the repository:  
    ```sh
-   git clone https://github.com/your-repo/banking-system.git
+   https://github.com/yramoliya/Banking_Management_System_Major_Project.git
    ```
 
 2️⃣ Navigate to the project folder:  
    ```sh
-   cd banking-system
+   cd Banking_Management_System_Major_Project
    ```
 
 3️⃣ Build and run the application:  
